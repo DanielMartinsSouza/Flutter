@@ -9,28 +9,28 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  @override
   bool opacidade = true;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter: Primeiros Passos'),
-        leading: Icon(Icons.add_task),
+        leading: const Icon(Icons.add_task),
       ),
       body: AnimatedOpacity(
         opacity: opacidade ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 500),
         child: Container(
-          color: Color.fromARGB(255, 208, 221, 237),
+          color: const Color.fromARGB(255, 208, 221, 237),
           child: ListView(
             children: const [
               Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: Tasks('Estudar Flutter', 'assets/images/flutter.png', 3),
+                child: Tasks('Estudar Flutter', 'assets/images/dash.png', 3),
               ),
               Tasks('Andar de Bike', 'assets/images/bike.webp', 2),
-              Tasks('Ler 50 páginas', 'assets/images/ler.jpg', 1),
+              Tasks('Ler 50 páginas', 'assets/images/livro.jpg', 1),
               Tasks('Meditar', 'assets/images/meditar.jpeg', 4),
               Tasks(
                 'Jogar',
@@ -38,7 +38,7 @@ class _InitialScreenState extends State<InitialScreen> {
                 0,
               ),
               SizedBox(
-                height: 100,
+                height: 80,
               ),
             ],
           ),
