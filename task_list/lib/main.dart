@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  bool opacidade = true;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
