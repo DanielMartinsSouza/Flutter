@@ -16,13 +16,15 @@ class Tasks extends StatefulWidget {
 class _TasksState extends State<Tasks> {
   int maestria = 0;
   int level = 1;
-  List maestriaColor = [Colors.blue,
+  List maestriaColor = [
+    Colors.blue,
     Colors.yellow,
     Colors.orange,
     Colors.green,
     Colors.purple,
     Colors.brown,
-    Colors.black];
+    Colors.black
+  ];
 
   void maestriaUp() {
     setState(() {
@@ -32,10 +34,16 @@ class _TasksState extends State<Tasks> {
 
   void levelUp() {
     setState(() {
-      level++;
-      if((level / (widget.dificuldade * 10)) >= 1){
-        maestria++;
-        level = 1;
+      if (maestria == 6 && level == (widget.dificuldade * 10)) {
+        level = level;
+      } else {
+        level++;
+      }
+      if ((level / (widget.dificuldade * 10)) >= 1) {
+        if (maestria < 6) {
+          maestriaUp();
+          level = 1;
+        }
       }
     });
   }
@@ -90,8 +98,7 @@ class _TasksState extends State<Tasks> {
                           child: Text(
                             widget.nome,
                             style: const TextStyle(
-                                fontSize: 24,
-                                overflow: TextOverflow.ellipsis),
+                                fontSize: 24, overflow: TextOverflow.ellipsis),
                           ),
                         ),
                         Difficulty(widget.dificuldade),
