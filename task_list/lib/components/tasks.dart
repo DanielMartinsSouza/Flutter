@@ -6,16 +6,22 @@ class Tasks extends StatefulWidget {
   final String foto;
   final int dificuldade;
 
-  const Tasks(this.nome, this.foto, this.dificuldade, {Key? key})
-      : super(key: key);
+  Tasks(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
 
+  int maestria = 0;
+  int level = 1;
   @override
   State<Tasks> createState() => _TasksState();
 }
 
 class _TasksState extends State<Tasks> {
-  int maestria = 0;
-  int level = 1;
+  bool assetOrNetwork() {
+    if (widget.foto.contains('http')) {
+      return false;
+    }
+    return true;
+  }
+
   List maestriaColor = [
     Colors.blue,
     Colors.yellow,
@@ -28,21 +34,21 @@ class _TasksState extends State<Tasks> {
 
   void maestriaUp() {
     setState(() {
-      maestria++;
+      widget.maestria++;
     });
   }
 
   void levelUp() {
     setState(() {
-      if (maestria == 6 && level == (widget.dificuldade * 10)) {
-        level = level;
+      if (widget.maestria == 6 && widget.level == (widget.dificuldade * 10)) {
+        widget.level = widget.level;
       } else {
-        level++;
+        widget.level++;
       }
-      if ((level / (widget.dificuldade * 10)) >= 1) {
-        if (maestria < 6) {
+      if ((widget.level / (widget.dificuldade * 10)) >= 1) {
+        if (widget.maestria < 6) {
           maestriaUp();
-          level = 1;
+          widget.level = 1;
         }
       }
     });
@@ -57,7 +63,7 @@ class _TasksState extends State<Tasks> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              color: maestriaColor[maestria],
+              color: maestriaColor[widget.maestria],
             ),
             height: 140,
           ),
@@ -79,15 +85,19 @@ class _TasksState extends State<Tasks> {
                         borderRadius: BorderRadius.circular(4),
                         color: Colors.black12,
                       ),
+                      height: 100,
+                      width: 72,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          widget.foto,
-                          height: 100,
-                          width: 72,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(4),
+                          child: assetOrNetwork()
+                              ? Image.asset(
+                                  widget.foto,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  widget.foto,
+                                  fit: BoxFit.cover,
+                                )),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +151,7 @@ class _TasksState extends State<Tasks> {
                       child: LinearProgressIndicator(
                         color: Colors.white,
                         value: widget.dificuldade > 0
-                            ? (level / (widget.dificuldade * 10))
+                            ? (widget.level / (widget.dificuldade * 10))
                             : 1,
                       ),
                     ),
@@ -149,7 +159,7 @@ class _TasksState extends State<Tasks> {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      'Nivel: $level',
+                      'Nivel: ${widget.level}',
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
