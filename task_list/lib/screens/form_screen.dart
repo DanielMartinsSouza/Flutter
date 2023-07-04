@@ -132,7 +132,7 @@ class _FormScreenState extends State<FormScreen> {
                         imageController.text,
                         errorBuilder: (BuildContext context, Object exception,
                             StackTrace? stackTrace) {
-                          return const Icon(Icons.no_photography_outlined);
+                          return Image.asset('assets/images/nophoto.png');
                         },
                         fit: BoxFit.cover,
                       ),
@@ -142,10 +142,9 @@ class _FormScreenState extends State<FormScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         TaskDao().save(Tasks(
-                          nameController.text,
-                          imageController.text,
-                          int.parse(difficultyController.text),
-                        ));
+                            nameController.text,
+                            imageController.text,
+                            int.parse(difficultyController.text)));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Salvando nova tarefa'),

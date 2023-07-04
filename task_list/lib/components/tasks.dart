@@ -16,6 +16,7 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
+  
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
@@ -69,7 +70,6 @@ class _TasksState extends State<Tasks> {
             height: 140,
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -79,7 +79,6 @@ class _TasksState extends State<Tasks> {
                 height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       decoration: BoxDecoration(
@@ -112,7 +111,7 @@ class _TasksState extends State<Tasks> {
                                 fontSize: 24, overflow: TextOverflow.ellipsis),
                           ),
                         ),
-                        Difficulty(widget.dificuldade),
+                        Difficulty(dificulty: widget.dificuldade,),
                         // vai ser um novo componente.
                       ],
                     ),
@@ -147,9 +146,7 @@ class _TasksState extends State<Tasks> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 8,
-                    ),
+                    padding: const EdgeInsets.all(8),
                     child: SizedBox(
                       width: 200,
                       child: LinearProgressIndicator(
@@ -161,7 +158,7 @@ class _TasksState extends State<Tasks> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(12),
                     child: Text(
                       'Nivel: ${widget.level}',
                       style: const TextStyle(color: Colors.white, fontSize: 16),

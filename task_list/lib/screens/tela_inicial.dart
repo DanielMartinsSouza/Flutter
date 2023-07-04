@@ -3,8 +3,6 @@ import 'package:task_list/components/tasks.dart';
 import 'package:task_list/data/task_dao.dart';
 import 'package:task_list/screens/form_screen.dart';
 
-import '../data/task_inherited.dart';
-
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
 
@@ -17,15 +15,14 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter: Primeiros Passos'),
+        title: const Text('Tarefas'),
         leading: const Icon(Icons.add_task),
         actions: [
           IconButton(
               onPressed: () {
-                setState() {}
-                ;
+                setState(() {});
               },
-              icon: Icon(Icons.refresh))
+              icon: const Icon(Icons.refresh))
         ],
       ),
       body: Padding(
@@ -36,7 +33,7 @@ class _InitialScreenState extends State<InitialScreen> {
             List<Tasks>? items = snapshot.data;
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                return Center(
+                return const Center(
                   child: Column(
                     children: [
                       CircularProgressIndicator(),
@@ -44,9 +41,8 @@ class _InitialScreenState extends State<InitialScreen> {
                     ],
                   ),
                 );
-                break;
               case ConnectionState.waiting:
-                return Center(
+                return const Center(
                   child: Column(
                     children: [
                       CircularProgressIndicator(),
@@ -54,9 +50,8 @@ class _InitialScreenState extends State<InitialScreen> {
                     ],
                   ),
                 );
-                break;
               case ConnectionState.active:
-                return Center(
+                return const Center(
                   child: Column(
                     children: [
                       CircularProgressIndicator(),
@@ -64,7 +59,6 @@ class _InitialScreenState extends State<InitialScreen> {
                     ],
                   ),
                 );
-                break;
               case ConnectionState.done:
                 if (snapshot.hasData && items != null) {
                   if (items.isNotEmpty) {
@@ -76,7 +70,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       },
                     );
                   }
-                  return Center(
+                  return const Center(
                     child: Column(
                       children: [
                         Icon(Icons.error_outline, size: 128),
@@ -88,10 +82,8 @@ class _InitialScreenState extends State<InitialScreen> {
                     ),
                   );
                 }
-                return Text('Erro ao carregar tarefas');
-                break;
+                return const Text('Erro ao carregar tarefas');
             }
-            return Text('Erro desconhecido');
           }),
         ),
       ),
@@ -104,7 +96,9 @@ class _InitialScreenState extends State<InitialScreen> {
                 taskContext: context,
               ),
             ),
-          ).then((value) => setState(() {}));
+          ).then((value) => setState(() {
+                print('Recaregando a tela inicial');
+              }));
         },
         child: const Icon(Icons.add),
       ),
