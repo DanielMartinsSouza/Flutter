@@ -9,8 +9,8 @@ void main() {
   runApp(const MyApp());
 
   JournalService service = JournalService();
-  service.register(Journal.empty());
-  //service.get();
+  //service.register(Journal.empty());
+  service.getAll();
 
   asyncStudy();
 }
@@ -42,11 +42,18 @@ class MyApp extends StatelessWidget {
       },
       onGenerateRoute: (settings){
         if(settings.name == "add-journal"){
-          final Journal journal = settings.arguments as Journal;
-          return MaterialPageRoute(builder: (context){
-            return AddJournalScreen(journal: journal);
-          });
+        Map<String, dynamic> map = settings.arguments as Map<String, dynamic>;
+        final Journal journal = map["journal"] as Journal;
+        final bool isEditing = map["is_editing"];
+        return MaterialPageRoute(builder: (context){
+          return AddJournalScreen(
+            journal: journal, 
+            isEditing: isEditing,
+          );
+        });
+
         }
+        return null;
       },
     );
   }

@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/helpers/weekday.dart';
 import 'package:flutter_webapi_first_course/models/journal.dart';
+import 'package:flutter_webapi_first_course/screens/commom/confirmation_dialog.dart';
+import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:uuid/uuid.dart';
 
 class JournalCard extends StatelessWidget {
   final Journal? journal;
   final DateTime showedDate;
-  const JournalCard({Key? key, this.journal, required this.showedDate})
+  final Function refreshFunction;
+  const JournalCard(
+      {Key? key,
+      this.journal,
+      required this.showedDate,
+      required this.refreshFunction})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (journal != null) {
       return InkWell(
-        onTap: () {},
+        onTap: () {
+          callAddJournalScreen(context, journal: journal);
+        },
         child: Container(
           height: 115,
           margin: const EdgeInsets.all(8),
@@ -55,7 +64,7 @@ class JournalCard extends StatelessWidget {
                       ),
                     ),
                     padding: const EdgeInsets.all(8),
-                    child: Text(WeekDay(journal!.createdAt.weekday).short),
+                    child: Text(WeekDay(journal!.createdAt).short),
                   ),
                 ],
               ),
@@ -74,6 +83,11 @@ class JournalCard extends StatelessWidget {
                   ),
                 ),
               ),
+              IconButton(
+                  onPressed: () {
+                    removeJournal(context);
+                  },
+                  icon: const Icon(Icons.delete))
             ],
           ),
         ),
@@ -87,7 +101,7 @@ class JournalCard extends StatelessWidget {
           height: 115,
           alignment: Alignment.center,
           child: Text(
-            "${WeekDay(showedDate.weekday).short} - ${showedDate.day}",
+            "${WeekDay(showedDate).short} - ${showedDate.day}",
             style: const TextStyle(fontSize: 12),
             textAlign: TextAlign.center,
           ),
@@ -96,24 +110,72 @@ class JournalCard extends StatelessWidget {
     }
   }
 
-  callAddJournalScreen(BuildContext context){
+  callAddJournalScreen(BuildContext context, {Journal? journal}) {
+    Journal innerJournal = Journal(
+      id: const Uuid().v1(),
+      content: "content",
+      createdAt: showedDate,
+      updatedAt: showedDate,
+    );
+
+    Map<String, dynamic> map = {};
+
+    if (journal != null) {
+      innerJournal = journal;
+      map['is_editing'] = false;
+    } else {
+      map['is_editing'] = true;
+    }
+
+    map['journal'] = innerJournal;
+
     Navigator.pushNamed(
-      context, 
-      "add-journal", 
-      arguments: Journal(
-        id: const Uuid().v1(), 
-        content: "content", 
-        createdAt: showedDate, 
-        updatedAt: showedDate,
-      ),
-    ).then((value){
-      if (value != null && value == true){
+      context,
+      "add-journal",
+      arguments: map,
+    ).then((value) {
+      refreshFunction();
+      if (value != null && value == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Registro feito com sucesso!!"),
           ),
         );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Falha ao registrar!!"),
+          ),
+        );
       }
     });
+  }
+
+  removeJournal(context) {
+    JournalService service = JournalService();
+
+    if (journal != null) {
+      showConfirmationDialog(context,
+              content:
+                  "Deseja realmente remover o diario do dia ${WeekDay(journal!.createdAt)}",
+              affirmativeOption: "Remover")
+          .then((value) {
+        if (value != null) {
+          if (value) {
+            service.delete(journal!.id).then((value) {
+              if (value) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Removido com sucesso!!"),
+                  ),
+                );
+
+                refreshFunction();
+              }
+            });
+          }
+        }
+      });
+    }
   }
 }
