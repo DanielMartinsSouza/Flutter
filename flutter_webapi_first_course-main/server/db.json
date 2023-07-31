@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "danielmartsouza@gmail.com",
+      "password": "$2a$10$4NZx5vmkTVqO..vgl3DAwOW2LV7pgD8tIuHCumpCOd9o14ilGV2ia",
+      "id": 1
+    }
+  ],
   "learnhttp": {
     "content": "Olá mundo!"
   },
