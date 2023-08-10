@@ -4,6 +4,16 @@
       "email": "danielmartsouza@gmail.com",
       "password": "$2a$10$4NZx5vmkTVqO..vgl3DAwOW2LV7pgD8tIuHCumpCOd9o14ilGV2ia",
       "id": 1
+    },
+    {
+      "email": "danielmartsouza2@gmail.com",
+      "password": "$2a$10$G5sfd0riGd91eoXCx9pG0uOcFG7odcvVj7K8DUuvJEs76mlUXtQIi",
+      "id": 2
+    },
+    {
+      "email": "teste@gmail.com",
+      "password": "$2a$10$vilUew3/GgW8augCzuxJiOQxHciYSwssluGOjahcWBHh5e/gxQEsu",
+      "id": 3
     }
   ],
   "learnhttp": {
@@ -13,8 +23,9 @@
     {
       "id": "33ed7b90-25a4-11ee-9eb4-05446043cfab",
       "content": "Testando novamente, mas atualizando",
-      "created_at": "2023-07-10 19:47:26.461972",
-      "updated_at": "2023-07-10 19:47:26.461972"
+      "created_at": "2023-07-30 19:47:26.461972",
+      "updated_at": "2023-07-30 19:47:26.461972",
+      "userId": 1
     }
   ]
 }
