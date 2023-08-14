@@ -6,11 +6,11 @@ void main() {
 }
 
 class Danbank extends StatelessWidget {
-const Danbank({ Key? key }) : super(key: key);
+  const Danbank({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-    return MaterialApp(
+  Widget build(BuildContext context) {
+    return const MaterialApp(
       title: 'Danbank',
       home: Home(),
     );
