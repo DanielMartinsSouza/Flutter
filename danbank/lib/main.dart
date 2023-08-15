@@ -1,4 +1,5 @@
 import 'package:danbank/screens/home.dart';
+import 'package:danbank/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +11,10 @@ class Danbank extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Danbank',
-      home: Home(),
+      theme: MyTheme,
+      home: const Home(),
     );
   }
 }
