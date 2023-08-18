@@ -1,15 +1,18 @@
 import 'package:danbank/components/sections/header.dart';
+import 'package:danbank/components/sections/recent_activity.dart';
 import 'package:flutter/material.dart';
-import 'package:danbank/components/box_card.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
-        children: <Widget>[Header(), BoxCard(boxContent: Text("Olá Mundo!!"))],
+        children: <Widget>[
+          Header(),
+          RecentActivity(),
+        ],
       ),
     );
   }
