@@ -13,7 +13,7 @@ class Danbank extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Danbank',
-      theme: MyTheme,
+      theme: myTheme,
       home: const Home(),
     );
   }

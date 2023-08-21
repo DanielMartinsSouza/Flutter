@@ -65,27 +65,27 @@ class _RecentActivityContent extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+        const Padding(
+          padding: EdgeInsets.only(top: 16.0, bottom: 8.0),
           child: Text('Limite de gastos: \$432.90'),
         ),
         Container(
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-          child: LinearProgressIndicator(
+          child: const LinearProgressIndicator(
             value: 0.3,
             minHeight: 8,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        const Padding(
+          padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
           child: ContentDivision(),
         ),
-        Text(
+        const Text(
             'Esse mês você gastou \$1500.00 com jogos. Tente abaixar esse custo!'),
         TextButton(
           onPressed: () {},
-          child: Text(
+          child: const Text(
             'Diga-me como!',
             style: TextStyle(fontSize: 16),
           ),

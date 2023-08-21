@@ -7,7 +7,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -37,12 +37,12 @@ class Header extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(
+                const Text(
                   "Balanço disponivel",
                 ),
               ],
             ),
-            Icon(
+            const Icon(
               Icons.account_circle,
               size: 42,
             ),
