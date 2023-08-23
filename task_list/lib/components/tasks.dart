@@ -16,7 +16,6 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
-  
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
@@ -111,7 +110,9 @@ class _TasksState extends State<Tasks> {
                                 fontSize: 24, overflow: TextOverflow.ellipsis),
                           ),
                         ),
-                        Difficulty(dificulty: widget.dificuldade,),
+                        Difficulty(
+                          dificulty: widget.dificuldade,
+                        ),
                         // vai ser um novo componente.
                       ],
                     ),
@@ -125,10 +126,10 @@ class _TasksState extends State<Tasks> {
                             TaskDao().delete(widget.nome);
                           },
                           onPressed: levelUp,
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
+                            children: [
                               Icon(Icons.arrow_drop_up),
                               Text(
                                 'UP',
