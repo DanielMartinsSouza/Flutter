@@ -1,0 +1,146 @@
+import 'package:bdy/screens/register_screen.dart';
+import 'package:bdy/themes/theme_colors.dart';
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(100),
+                ),
+                color: ThemeColors.mainColor,
+              ),
+              height: 250,
+              width: 415,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 75,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Tela de Login',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            ),
+            Form(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(thickness: 2),
+                      ),
+                      Text(
+                        "Entre ou Registre-se",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: TextFormField(
+                          style: const TextStyle(color: Colors.black),
+                          controller: _emailController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            prefixIcon: Icon(Icons.email_outlined),
+                            label: Text("E-mail"),
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: TextFormField(
+                          style: const TextStyle(color: Colors.black),
+                          controller: _passwordController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            prefixIcon: Icon(Icons.security_outlined),
+                            label: Text("Senha"),
+                          ),
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, right: 16.0),
+                            child: SizedBox(
+                              height: 50,
+                              width: 100,
+                              child: ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      ThemeColors.mainColor),
+                                ),
+                                onPressed: () {},
+                                child: const Text("Continuar"),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, left: 16.0),
+                            child: SizedBox(
+                              height: 50,
+                              width: 100,
+                              child: ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      ThemeColors.mainColor),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (contextNew) => RegisterScreen(),
+                                    ),
+                                  ).then((value) => Navigator.pop(context));
+                                },
+                                child: const Text('Registrar'),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
