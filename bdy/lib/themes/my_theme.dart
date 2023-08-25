@@ -9,11 +9,12 @@ ThemeData myTheme = ThemeData(
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
       fontSize: 16,
+      color: Colors.white,
     ),
     bodyLarge: TextStyle(
-      fontSize: 28,
-      fontWeight: FontWeight.bold,
-    ),
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: ThemeColors.mainColor),
     titleMedium: TextStyle(
       color: Colors.white,
       fontSize: 20,

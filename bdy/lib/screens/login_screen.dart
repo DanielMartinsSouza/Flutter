@@ -1,3 +1,4 @@
+import 'package:bdy/screens/initial_screen.dart';
 import 'package:bdy/screens/register_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -58,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
                           style: const TextStyle(color: Colors.black),
-                          controller: _emailController,
+                          controller: _userController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -66,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             prefixIcon: Icon(Icons.email_outlined),
-                            label: Text("E-mail"),
+                            label: Text("Nome de Usuário"),
                           ),
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -103,8 +104,16 @@ class LoginScreen extends StatelessWidget {
                                   backgroundColor: MaterialStatePropertyAll(
                                       ThemeColors.mainColor),
                                 ),
-                                onPressed: () {},
-                                child: const Text("Continuar"),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (contextInitialScreen) =>
+                                          InitialScreen(),
+                                    ),
+                                  ).then((value) => Navigator.pop(context));
+                                },
+                                child: const Text("Logar"),
                               ),
                             ),
                           ),
@@ -120,12 +129,18 @@ class LoginScreen extends StatelessWidget {
                                       ThemeColors.mainColor),
                                 ),
                                 onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          'Você foi direcionado para tela de registro'),
+                                    ),
+                                  );
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (contextNew) => RegisterScreen(),
                                     ),
-                                  ).then((value) => Navigator.pop(context));
+                                  );
                                 },
                                 child: const Text('Registrar'),
                               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeColors {
-  static const Color mainColor = Color.fromRGBO(160, 113, 255, 1.0);
+  static const Color mainColor = Colors.deepPurple;
   static const MaterialColor primaryColor = Colors.deepPurple;
   static const List<Color> headerGradient = [
     Color.fromRGBO(103, 99, 234, 1.0),

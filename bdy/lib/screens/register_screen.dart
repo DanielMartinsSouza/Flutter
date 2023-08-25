@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -59,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
                           style: const TextStyle(color: Colors.black),
-                          controller: _emailController,
+                          controller: _userController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -114,12 +114,19 @@ class RegisterScreen extends StatelessWidget {
                           height: 50,
                           width: 100,
                           child: ElevatedButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   ThemeColors.mainColor),
                             ),
-                            onPressed: () {},
-                            child: const Text("Continuar"),
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Registrado com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Registrar"),
                           ),
                         ),
                       ),
