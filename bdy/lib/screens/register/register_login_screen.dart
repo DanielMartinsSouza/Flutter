@@ -1,8 +1,8 @@
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
+class RegisterLoginScreen extends StatelessWidget {
+  RegisterLoginScreen({Key? key}) : super(key: key);
 
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

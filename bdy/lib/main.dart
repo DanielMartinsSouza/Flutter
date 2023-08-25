@@ -1,6 +1,6 @@
-import 'package:bdy/screens/initial_screen.dart';
+import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
-import 'package:bdy/screens/register_screen.dart';
+import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class DBY extends StatelessWidget {
       theme: myTheme,
       initialRoute: "login",
       routes: {
-        "register": (context) => RegisterScreen(),
+        "register": (context) => RegisterLoginScreen(),
         "login": (context) => LoginScreen(),
         "initial": (context) => InitialScreen(),
       },

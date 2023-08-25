@@ -2,6 +2,7 @@ import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData myTheme = ThemeData(
+  cardColor: ThemeColors.cardColor,
   primarySwatch: ThemeColors.primaryColor,
   primaryColor: ThemeColors.mainColor,
   //brightness: Brightness.dark,

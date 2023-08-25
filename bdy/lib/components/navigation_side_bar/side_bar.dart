@@ -1,7 +1,7 @@
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
-import 'package:bdy/screens/initial_screen.dart';
+import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
-import 'package:bdy/screens/register_screen.dart';
+import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +11,16 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+        backgroundColor: ThemeColors.backgroundColor,
         child: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          _buildHeader(context),
-          _buildMenuItems(context),
-        ],
-      ),
-    ));
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              _buildHeader(context),
+              _buildMenuItems(context),
+            ],
+          ),
+        ));
   }
 
   Widget _buildHeader(BuildContext context) => Container(
@@ -51,7 +52,7 @@ class SideBar extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Wrap(
           runSpacing: 16,
-          children: [
+          children: <Widget>[
             const SideMenuItem(
               icon: Icon(Icons.home),
               text: Text('Home'),
@@ -62,7 +63,7 @@ class SideBar extends StatelessWidget {
             SideMenuItem(
               icon: const Icon(Icons.shopify),
               text: const Text('Realizar Venda'),
-              route: RegisterScreen(),
+              route: RegisterLoginScreen(),
               exit: false,
               menu: false,
             ),

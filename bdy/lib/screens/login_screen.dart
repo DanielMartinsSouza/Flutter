@@ -1,5 +1,5 @@
-import 'package:bdy/screens/initial_screen.dart';
-import 'package:bdy/screens/register_screen.dart';
+import 'package:bdy/screens/home/initial_screen.dart';
+import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -138,7 +138,8 @@ class LoginScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (contextNew) => RegisterScreen(),
+                                      builder: (contextNew) =>
+                                          RegisterLoginScreen(),
                                     ),
                                   );
                                 },
