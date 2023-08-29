@@ -12,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       Text(
                         "Entre ou Registre-se",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),

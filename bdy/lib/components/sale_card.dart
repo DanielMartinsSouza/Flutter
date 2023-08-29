@@ -22,18 +22,23 @@ class SaleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0, right: 8, left: 8),
+      padding: const EdgeInsets.only(top: 16, left: 32.0, right: 32),
       child: BoxCard(
         boxContent: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    client,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'Compra de $client',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -45,53 +50,78 @@ class SaleCard extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        SizedBox(
+                          width: 110,
                           child: Text('Cliente:'),
                         ),
-                        Text(client),
+                        Expanded(
+                          child: Text(
+                            client,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        SizedBox(
+                          width: 110,
                           child: Text('Produto:'),
                         ),
-                        Text(item),
+                        Expanded(
+                          child: Text(
+                            item,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        SizedBox(
+                          width: 110,
                           child: Text('Categoria:'),
                         ),
-                        Text(category),
+                        Expanded(
+                          child: Text(
+                            category,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        SizedBox(
+                          width: 110,
                           child: Text('Valor:'),
                         ),
-                        Text(value.toString()),
+                        Expanded(
+                          child: Text(
+                            value.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                        SizedBox(
+                          width: 110,
                           child: Text('Quantidade:'),
                         ),
-                        Text(amount.toString())
+                        Expanded(
+                          child: Text(
+                            amount.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
                       ],
                     ),
                   ],

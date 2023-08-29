@@ -20,9 +20,9 @@ class _InitialScreenState extends State<InitialScreen> {
         title: const Text('Tela Inicial'),
       ),
       body: ListView(
-        children: const <SaleCard>[
+        children: <SaleCard>[
           SaleCard(
-            client: 'Daniel Martins de Souza',
+            client: 'Daniel Martins de Souza de souza',
             item: 'Malbec',
             brand: 'Oboticario',
             category: 'Perfume',

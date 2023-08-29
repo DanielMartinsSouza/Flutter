@@ -54,50 +54,73 @@ class SideBar extends StatelessWidget {
           runSpacing: 16,
           children: <Widget>[
             const SideMenuItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                color: ThemeColors.mainColor,
+              ),
               text: Text('Home'),
               route: InitialScreen(),
               exit: false,
               menu: true,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.shopify),
+              icon: const Icon(
+                Icons.shopify,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Realizar Venda'),
               route: RegisterLoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.store_mall_directory_outlined),
+              icon: const Icon(
+                Icons.store_mall_directory_outlined,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Produtos'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.people_outline),
+              icon: const Icon(
+                Icons.people_outline,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Clientes'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.storefront_outlined),
+              icon: const Icon(
+                Icons.storefront_outlined,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Estoque'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.delivery_dining),
+              icon: const Icon(
+                Icons.delivery_dining,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Entregas'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
-            const Divider(color: ThemeColors.mainColor),
+            const Divider(
+              color: ThemeColors.mainColor,
+            ),
             SideMenuItem(
-              icon: const Icon(Icons.exit_to_app),
+              icon: const Icon(
+                Icons.exit_to_app,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Sair'),
               route: LoginScreen(),
               exit: true,
