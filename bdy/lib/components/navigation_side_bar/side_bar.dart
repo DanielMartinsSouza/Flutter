@@ -1,9 +1,9 @@
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
-import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
+import '../../screens/sell_screen.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class SideBar extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
-            'Sempre te ajudando em suas vendas',
+            'Sempre ajudando em suas vendas',
             style: Theme.of(context).textTheme.bodyMedium,
           )
         ]),
@@ -68,8 +68,8 @@ class SideBar extends StatelessWidget {
                 Icons.shopify,
                 color: ThemeColors.mainColor,
               ),
-              text: const Text('Realizar Venda'),
-              route: RegisterLoginScreen(),
+              text: Text('Realizar Venda'),
+              route: SellScreen(),
               exit: false,
               menu: false,
             ),
