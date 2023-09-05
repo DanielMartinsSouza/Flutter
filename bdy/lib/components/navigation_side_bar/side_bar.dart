@@ -1,9 +1,9 @@
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
-import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
+import '../../screens/sell_screen.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class SideBar extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
-            'Sempre te ajudando em suas vendas',
+            'Sempre ajudando em suas vendas',
             style: Theme.of(context).textTheme.bodyMedium,
           )
         ]),
@@ -54,50 +54,73 @@ class SideBar extends StatelessWidget {
           runSpacing: 16,
           children: <Widget>[
             const SideMenuItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                color: ThemeColors.mainColor,
+              ),
               text: Text('Home'),
               route: InitialScreen(),
               exit: false,
               menu: true,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.shopify),
-              text: const Text('Realizar Venda'),
-              route: RegisterLoginScreen(),
+              icon: const Icon(
+                Icons.shopify,
+                color: ThemeColors.mainColor,
+              ),
+              text: Text('Realizar Venda'),
+              route: SellScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.store_mall_directory_outlined),
+              icon: const Icon(
+                Icons.store_mall_directory_outlined,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Produtos'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.people_outline),
+              icon: const Icon(
+                Icons.people_outline,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Clientes'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.storefront_outlined),
+              icon: const Icon(
+                Icons.storefront_outlined,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Estoque'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
             SideMenuItem(
-              icon: const Icon(Icons.delivery_dining),
+              icon: const Icon(
+                Icons.delivery_dining,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Entregas'),
               route: LoginScreen(),
               exit: false,
               menu: false,
             ),
-            const Divider(color: ThemeColors.mainColor),
+            const Divider(
+              color: ThemeColors.mainColor,
+            ),
             SideMenuItem(
-              icon: const Icon(Icons.exit_to_app),
+              icon: const Icon(
+                Icons.exit_to_app,
+                color: ThemeColors.mainColor,
+              ),
               text: const Text('Sair'),
               route: LoginScreen(),
               exit: true,
