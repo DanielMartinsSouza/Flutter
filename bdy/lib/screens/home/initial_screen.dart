@@ -17,7 +17,7 @@ class _InitialScreenState extends State<InitialScreen> {
       backgroundColor: ThemeColors.backgroundColor,
       drawer: const SideBar(),
       appBar: AppBar(
-        title: const Text('Tela Inicial'),
+        title: const Text('Historico de Vendas'),
       ),
       body: ListView(
         children: const <SaleCard>[
