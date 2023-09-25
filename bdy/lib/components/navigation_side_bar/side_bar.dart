@@ -1,6 +1,7 @@
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
+import 'package:bdy/screens/product_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 import '../../screens/register/sell_screen.dart';
@@ -79,7 +80,7 @@ class SideBar extends StatelessWidget {
                 color: ThemeColors.mainColor,
               ),
               text: const Text('Produtos'),
-              route: LoginScreen(),
+              route: ProductScreen(),
               exit: false,
               menu: false,
             ),
