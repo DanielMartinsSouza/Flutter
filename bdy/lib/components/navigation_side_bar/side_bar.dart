@@ -4,6 +4,7 @@ import 'package:bdy/screens/login_screen.dart';
 import 'package:bdy/screens/product_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
+import '../../screens/client_screen.dart';
 import '../../screens/register/sell_screen.dart';
 
 class SideBar extends StatelessWidget {
@@ -90,7 +91,7 @@ class SideBar extends StatelessWidget {
                 color: ThemeColors.mainColor,
               ),
               text: const Text('Clientes'),
-              route: LoginScreen(),
+              route: ClientScreen(),
               exit: false,
               menu: false,
             ),
