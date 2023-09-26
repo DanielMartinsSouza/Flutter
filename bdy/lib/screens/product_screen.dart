@@ -1,8 +1,7 @@
-import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../components/product_card.dart';
 import '../themes/theme_colors.dart';
+import 'register/register_product.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -39,7 +38,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (contextNew) => RegisterLoginScreen(),
+                      builder: (contextNew) => RegisterProduct(),
                     ),
                   );
                 },
@@ -50,51 +49,8 @@ class _ProductScreenState extends State<ProductScreen> {
               productName: 'Malbec',
               amount: 5,
               value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
+              brand: 'Avon',
+              category: 'Perfume',
             ),
           ],
         ),

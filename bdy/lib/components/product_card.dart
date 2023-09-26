@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final String productName;
+  final String brand;
+  final String category;
   final int amount;
   final int value;
   const ProductCard({
     super.key,
     required this.productName,
+    required this.brand,
+    required this.category,
     required this.amount,
     required this.value,
   });
@@ -21,7 +25,6 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(Icons.store),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -52,7 +55,31 @@ class ProductCard extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
-                )
+                ),
+                Row(
+                  children: <Text>[
+                    Text(
+                      'Marca: ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    Text(
+                      brand,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Text>[
+                    Text(
+                      'Categoria: ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    Text(
+                      category,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
               ],
             ),
             IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
