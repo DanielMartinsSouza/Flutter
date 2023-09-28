@@ -33,7 +33,8 @@ class _ProductScreenState extends State<ProductScreen> {
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Registrado com sucesso'),
+                      content:
+                          Text('Direcionado para tela de registro de produto'),
                     ),
                   );
                   Navigator.push(
