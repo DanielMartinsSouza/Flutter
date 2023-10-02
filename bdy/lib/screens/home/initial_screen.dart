@@ -30,6 +30,7 @@ class _InitialScreenState extends State<InitialScreen> {
             category: 'Perfume',
             value: 100,
             amount: 1,
+            delivery: true,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -38,6 +39,7 @@ class _InitialScreenState extends State<InitialScreen> {
             category: 'Perfume',
             value: 100,
             amount: 1,
+            delivery: false,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -46,6 +48,7 @@ class _InitialScreenState extends State<InitialScreen> {
             category: 'Perfume',
             value: 100,
             amount: 1,
+            delivery: true,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -54,6 +57,7 @@ class _InitialScreenState extends State<InitialScreen> {
             category: 'Perfume',
             value: 100,
             amount: 1,
+            delivery: false,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -62,6 +66,7 @@ class _InitialScreenState extends State<InitialScreen> {
             category: 'Perfume',
             value: 100,
             amount: 1,
+            delivery: true,
           ),
         ],
       ),
@@ -76,6 +81,8 @@ class SaleCard extends StatelessWidget {
   final String category;
   final int value;
   final int amount;
+  final bool delivery;
+
   const SaleCard({
     Key? key,
     required this.client,
@@ -84,6 +91,7 @@ class SaleCard extends StatelessWidget {
     required this.category,
     required this.value,
     required this.amount,
+    required this.delivery,
   }) : super(key: key);
 
   @override

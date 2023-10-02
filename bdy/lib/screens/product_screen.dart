@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../components/box_card.dart';
 import '../components/content_division.dart';
 import '../themes/theme_colors.dart';
+import 'register/register_brand.dart';
+import 'register/register_category.dart';
 import 'register/register_product.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -45,6 +47,54 @@ class _ProductScreenState extends State<ProductScreen> {
                   );
                 },
                 child: const Text("Registrar um novo produto"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(ThemeColors.mainColor),
+                ),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'Direcionado para tela de registro de categoria'),
+                    ),
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (contextNew) => RegisterCategory(),
+                    ),
+                  );
+                },
+                child: const Text("Registrar uma nova categoria"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(ThemeColors.mainColor),
+                ),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content:
+                          Text('Direcionado para tela de registro de marca'),
+                    ),
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (contextNew) => RegisterBrand(),
+                    ),
+                  );
+                },
+                child: const Text("Registrar uma nova marca"),
               ),
             ),
             ProductCard(

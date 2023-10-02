@@ -2,9 +2,11 @@ import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
 import 'package:bdy/screens/product_screen.dart';
+import 'package:bdy/screens/stock_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 import '../../screens/client_screen.dart';
+import '../../screens/delivery_screen.dart';
 import '../../screens/register/sell_screen.dart';
 
 class SideBar extends StatelessWidget {
@@ -101,7 +103,7 @@ class SideBar extends StatelessWidget {
                 color: ThemeColors.mainColor,
               ),
               text: const Text('Estoque'),
-              route: LoginScreen(),
+              route: StockScreen(),
               exit: false,
               menu: false,
             ),
@@ -111,7 +113,7 @@ class SideBar extends StatelessWidget {
                 color: ThemeColors.mainColor,
               ),
               text: const Text('Entregas'),
-              route: LoginScreen(),
+              route: DeliveryScreen(),
               exit: false,
               menu: false,
             ),
