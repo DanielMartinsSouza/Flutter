@@ -1,8 +1,9 @@
+import 'package:bdy/components/validator.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
-class SellScreen extends StatelessWidget {
-  SellScreen({Key? key}) : super(key: key);
+class RegisterSell extends StatelessWidget {
+  RegisterSell({Key? key}) : super(key: key);
 
   final TextEditingController _clientController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -16,6 +17,8 @@ class SellScreen extends StatelessWidget {
   final TextEditingController _formPaymentController = TextEditingController();
   final TextEditingController _deliveryController = TextEditingController();
 
+  final _formSellKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +27,7 @@ class SellScreen extends StatelessWidget {
       ),
       backgroundColor: ThemeColors.backgroundColor,
       body: Form(
+        key: _formSellKey,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -42,6 +46,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o nome';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _clientController,
                   decoration: const InputDecoration(
@@ -59,6 +69,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o celular';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _phoneController,
                   decoration: const InputDecoration(
@@ -68,7 +84,7 @@ class SellScreen extends StatelessWidget {
                       ),
                     ),
                     prefixIcon: Icon(Icons.phone_android),
-                    label: Text("Telefone Celular"),
+                    label: Text("Celular"),
                   ),
                   keyboardType: TextInputType.number,
                   maxLength: 11,
@@ -77,6 +93,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o CPF';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _cpfController,
                   decoration: const InputDecoration(
@@ -107,6 +129,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a marca';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _brandController,
                   decoration: const InputDecoration(
@@ -124,6 +152,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a categoria';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _categoryController,
                   decoration: const InputDecoration(
@@ -141,6 +175,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o produto';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _itemController,
                   decoration: const InputDecoration(
@@ -158,6 +198,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o valor';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _valueController,
                   decoration: const InputDecoration(
@@ -175,6 +221,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a quantidade';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _amountController,
                   decoration: const InputDecoration(
@@ -204,6 +256,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a forma de pagamento';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _formPaymentController,
                   decoration: const InputDecoration(
@@ -221,6 +279,12 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira valor total da compra';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _valueSellController,
                   decoration: const InputDecoration(
@@ -230,7 +294,7 @@ class SellScreen extends StatelessWidget {
                       ),
                     ),
                     prefixIcon: Icon(Icons.add_shopping_cart),
-                    label: Text("Valor da Compra"),
+                    label: (Text("Valor total da compra")),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -238,6 +302,13 @@ class SellScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value) ||
+                        value != 'Retirada' && value != 'Entrega') {
+                      return 'Insira Retirada ou Entrega';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _deliveryController,
                   decoration: const InputDecoration(
@@ -263,12 +334,14 @@ class SellScreen extends StatelessWidget {
                           MaterialStatePropertyAll(ThemeColors.mainColor),
                     ),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Compra efetuada com sucesso'),
-                        ),
-                      );
-                      Navigator.pop(context);
+                      if (_formSellKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Compra efetuada com sucesso'),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
                     },
                     child: const Text("Finalizar Compra"),
                   ),

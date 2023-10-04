@@ -1,22 +1,25 @@
+import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
-
-import '../../components/box_card.dart';
+import '../../components/brand_card.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterBrand extends StatelessWidget {
   RegisterBrand({super.key});
   final TextEditingController _brandController = TextEditingController();
 
+  final _formBrandKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Categoria'),
+        title: const Text('Registro de Marca'),
       ),
       backgroundColor: ThemeColors.backgroundColor,
       body: ListView(
         children: [
           Form(
+            key: _formBrandKey,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -25,7 +28,7 @@ class RegisterBrand extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Informações da Categoria",
+                        "Informações da Marca",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],
@@ -34,6 +37,12 @@ class RegisterBrand extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                   child: TextFormField(
+                    validator: (String? value) {
+                      if (Validator().valueValidator(value)) {
+                        return 'Insira a marca';
+                      }
+                      return null;
+                    },
                     style: const TextStyle(color: ThemeColors.mainColor),
                     controller: _brandController,
                     decoration: const InputDecoration(
@@ -59,11 +68,13 @@ class RegisterBrand extends StatelessWidget {
                             MaterialStatePropertyAll(ThemeColors.mainColor),
                       ),
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Marca registrado com sucesso'),
-                          ),
-                        );
+                        if (_formBrandKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Marca registrado com sucesso'),
+                            ),
+                          );
+                        }
                       },
                       child: const Text("Registrar Marca"),
                     ),
@@ -83,36 +94,6 @@ class RegisterBrand extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class BrandCard extends StatelessWidget {
-  final String brand;
-
-  const BrandCard({
-    super.key,
-    required this.brand,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-      child: BoxCard(
-        boxContent: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              brand,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-          ],
-        ),
       ),
     );
   }

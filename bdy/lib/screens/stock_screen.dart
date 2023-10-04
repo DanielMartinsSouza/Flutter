@@ -1,6 +1,5 @@
-import 'package:bdy/screens/product_screen.dart';
 import 'package:flutter/material.dart';
-
+import '../components/product_card.dart';
 import '../themes/theme_colors.dart';
 
 class StockScreen extends StatefulWidget {

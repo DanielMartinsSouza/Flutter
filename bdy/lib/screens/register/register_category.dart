@@ -1,10 +1,13 @@
+import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
-import '../../components/box_card.dart';
+import '../../components/category_card.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterCategory extends StatelessWidget {
   RegisterCategory({super.key});
   final TextEditingController _categoryController = TextEditingController();
+
+  final _formCategoryKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class RegisterCategory extends StatelessWidget {
       body: ListView(
         children: [
           Form(
+            key: _formCategoryKey,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -33,6 +37,12 @@ class RegisterCategory extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                   child: TextFormField(
+                    validator: (String? value) {
+                      if (Validator().valueValidator(value)) {
+                        return 'Insira a categoria';
+                      }
+                      return null;
+                    },
                     style: const TextStyle(color: ThemeColors.mainColor),
                     controller: _categoryController,
                     decoration: const InputDecoration(
@@ -58,11 +68,13 @@ class RegisterCategory extends StatelessWidget {
                             MaterialStatePropertyAll(ThemeColors.mainColor),
                       ),
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('categoria registrado com sucesso'),
-                          ),
-                        );
+                        if (_formCategoryKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('categoria registrado com sucesso'),
+                            ),
+                          );
+                        }
                       },
                       child: const Text("Registrar categoria"),
                     ),
@@ -82,36 +94,6 @@ class RegisterCategory extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  final String category;
-
-  const CategoryCard({
-    super.key,
-    required this.category,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-      child: BoxCard(
-        boxContent: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              category,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-          ],
-        ),
       ),
     );
   }

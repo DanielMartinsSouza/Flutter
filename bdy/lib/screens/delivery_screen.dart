@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../components/sale_card.dart';
 import '../themes/theme_colors.dart';
-import 'home/initial_screen.dart';
 
 class DeliveryScreen extends StatefulWidget {
   const DeliveryScreen({super.key});
@@ -23,15 +22,6 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
         child: ListView(
           children: <SaleCard>[
             SaleCard(
-              client: 'Daniel Martins de Souza de souza',
-              item: 'Malbec',
-              brand: 'Oboticario',
-              category: 'Perfume',
-              value: 100,
-              amount: 1,
-              delivery: true,
-            ),
-            SaleCard(
               client: 'Daniel Martins de Souza',
               item: 'Malbec',
               brand: 'Oboticario',
@@ -39,6 +29,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
               value: 100,
               amount: 1,
               delivery: false,
+              pay: false,
             ),
             SaleCard(
               client: 'Daniel Martins de Souza',
@@ -48,24 +39,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
               value: 100,
               amount: 1,
               delivery: true,
-            ),
-            SaleCard(
-              client: 'Daniel Martins de Souza',
-              item: 'Malbec',
-              brand: 'Oboticario',
-              category: 'Perfume',
-              value: 100,
-              amount: 1,
-              delivery: false,
-            ),
-            SaleCard(
-              client: 'Daniel Martins de Souza',
-              item: 'Malbec',
-              brand: 'Oboticario',
-              category: 'Perfume',
-              value: 100,
-              amount: 1,
-              delivery: true,
+              pay: true,
             ),
           ],
         ),

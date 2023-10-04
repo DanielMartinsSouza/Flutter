@@ -1,3 +1,4 @@
+import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
 
 import '../../themes/theme_colors.dart';
@@ -11,6 +12,8 @@ class RegisterProduct extends StatelessWidget {
   final TextEditingController _valueController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
+  final _formProductKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +22,7 @@ class RegisterProduct extends StatelessWidget {
       ),
       backgroundColor: ThemeColors.backgroundColor,
       body: Form(
+        key: _formProductKey,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -37,6 +41,12 @@ class RegisterProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a marca';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _brandController,
                   decoration: const InputDecoration(
@@ -54,6 +64,12 @@ class RegisterProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a categoria';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _categoryController,
                   decoration: const InputDecoration(
@@ -71,6 +87,12 @@ class RegisterProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a produto';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _itemController,
                   decoration: const InputDecoration(
@@ -88,6 +110,12 @@ class RegisterProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o valor';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _valueController,
                   decoration: const InputDecoration(
@@ -105,6 +133,12 @@ class RegisterProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a quantidade';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _amountController,
                   decoration: const InputDecoration(
@@ -130,12 +164,14 @@ class RegisterProduct extends StatelessWidget {
                           MaterialStatePropertyAll(ThemeColors.mainColor),
                     ),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Produto registrado com sucesso'),
-                        ),
-                      );
-                      Navigator.pop(context);
+                      if (_formProductKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Produto registrado com sucesso'),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
                     },
                     child: const Text("Registrar produto"),
                   ),
