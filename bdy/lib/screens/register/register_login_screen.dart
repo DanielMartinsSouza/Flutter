@@ -1,8 +1,11 @@
+import 'package:bdy/components/validator.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class RegisterLoginScreen extends StatelessWidget {
   RegisterLoginScreen({Key? key}) : super(key: key);
+
+  final _formRegisterLoginKey = GlobalKey<FormState>();
 
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,6 +47,7 @@ class RegisterLoginScreen extends StatelessWidget {
               ),
             ),
             Form(
+              key: _formRegisterLoginKey,
               child: Center(
                 child: SingleChildScrollView(
                   child: Column(
@@ -59,6 +63,12 @@ class RegisterLoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          validator: (String? value) {
+                            if (Validator().valueValidator(value)) {
+                              return 'Insira o nome do usuário';
+                            }
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black),
                           controller: _userController,
                           decoration: const InputDecoration(
@@ -68,7 +78,7 @@ class RegisterLoginScreen extends StatelessWidget {
                               ),
                             ),
                             prefixIcon: Icon(Icons.email_outlined),
-                            label: Text("E-mail"),
+                            label: Text("Nome do usuário"),
                           ),
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -76,6 +86,12 @@ class RegisterLoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          validator: (String? value) {
+                            if (Validator().valueValidator(value)) {
+                              return 'Insira a senha';
+                            }
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black),
                           controller: _passwordController,
                           decoration: const InputDecoration(
@@ -94,6 +110,13 @@ class RegisterLoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          validator: (String? value) {
+                            if (Validator().valueValidator(value) ||
+                                value != _passwordController.text) {
+                              return 'Senha distinta';
+                            }
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black),
                           controller: _confirmPasswordController,
                           decoration: const InputDecoration(
@@ -120,12 +143,15 @@ class RegisterLoginScreen extends StatelessWidget {
                                   ThemeColors.mainColor),
                             ),
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Registrado com sucesso'),
-                                ),
-                              );
-                              Navigator.pop(context);
+                              if (_formRegisterLoginKey.currentState!
+                                  .validate()) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Registrado com sucesso'),
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              }
                             },
                             child: const Text("Registrar"),
                           ),

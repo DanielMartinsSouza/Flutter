@@ -9,7 +9,14 @@ class BoxCard extends StatelessWidget {
     return Ink(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          boxShadow: kElevationToShadow[3],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 5,
+              spreadRadius: 1,
+              offset: Offset(2, 2),
+            ),
+          ],
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).cardColor),
       child: boxContent,

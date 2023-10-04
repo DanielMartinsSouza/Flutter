@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../components/validator.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterClient extends StatelessWidget {
@@ -12,6 +12,8 @@ class RegisterClient extends StatelessWidget {
   final TextEditingController _cpfController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
 
+  final _formClientKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,7 @@ class RegisterClient extends StatelessWidget {
       ),
       backgroundColor: ThemeColors.backgroundColor,
       body: Form(
+        key: _formClientKey,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -38,6 +41,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o nome';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _nameController,
                   decoration: const InputDecoration(
@@ -55,6 +64,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o email';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -72,6 +87,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o gênero';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _genderController,
                   decoration: const InputDecoration(
@@ -89,6 +110,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira a data de nascimento';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _dateBirthController,
                   decoration: const InputDecoration(
@@ -98,7 +125,7 @@ class RegisterClient extends StatelessWidget {
                       ),
                     ),
                     prefixIcon: Icon(Icons.date_range_outlined),
-                    label: Text("Nascimento"),
+                    label: Text("Nascimento (xx/xx/xxxx)"),
                   ),
                   keyboardType: TextInputType.text,
                 ),
@@ -106,6 +133,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o CPF';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _cpfController,
                   decoration: const InputDecoration(
@@ -123,6 +156,12 @@ class RegisterClient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: TextFormField(
+                  validator: (String? value) {
+                    if (Validator().valueValidator(value)) {
+                      return 'Insira o celular';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: ThemeColors.mainColor),
                   controller: _numberController,
                   decoration: const InputDecoration(
@@ -148,12 +187,14 @@ class RegisterClient extends StatelessWidget {
                           MaterialStatePropertyAll(ThemeColors.mainColor),
                     ),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Cliente registrado com sucesso'),
-                        ),
-                      );
-                      Navigator.pop(context);
+                      if (_formClientKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Cliente registrado com sucesso'),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
                     },
                     child: const Text("Registrar cliente"),
                   ),

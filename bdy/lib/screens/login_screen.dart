@@ -1,3 +1,4 @@
+import 'package:bdy/components/validator.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
@@ -5,6 +6,8 @@ import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
+
+  final _formLoginKey = GlobalKey<FormState>();
 
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,6 +47,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             Form(
+              key: _formLoginKey,
               child: Center(
                 child: SingleChildScrollView(
                   child: Column(
@@ -59,6 +63,12 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          validator: (String? value) {
+                            if (Validator().valueValidator(value)) {
+                              return 'Insira o nome do usuario';
+                            }
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black),
                           controller: _userController,
                           decoration: const InputDecoration(
@@ -76,6 +86,12 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          validator: (String? value) {
+                            if (Validator().valueValidator(value)) {
+                              return 'Insira o celular';
+                            }
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black),
                           controller: _passwordController,
                           decoration: const InputDecoration(
@@ -106,13 +122,15 @@ class LoginScreen extends StatelessWidget {
                                       ThemeColors.mainColor),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (contextInitialScreen) =>
-                                          InitialScreen(),
-                                    ),
-                                  ).then((value) => Navigator.pop(context));
+                                  if (_formLoginKey.currentState!.validate()) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (contextInitialScreen) =>
+                                            InitialScreen(),
+                                      ),
+                                    ).then((value) => Navigator.pop(context));
+                                  }
                                 },
                                 child: const Text("Logar"),
                               ),
