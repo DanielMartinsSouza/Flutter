@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/product_card.dart';
+import '../components/cards/product_card.dart';
 import '../themes/theme_colors.dart';
 
 class StockScreen extends StatefulWidget {

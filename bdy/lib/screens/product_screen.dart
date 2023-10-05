@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/product_card.dart';
+import '../components/cards/product_card.dart';
 import '../themes/theme_colors.dart';
 import 'register/register_brand.dart';
 import 'register/register_category.dart';

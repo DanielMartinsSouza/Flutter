@@ -1,6 +1,6 @@
 import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
-import '../../components/brand_card.dart';
+import '../../components/cards/brand_card.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterBrand extends StatelessWidget {

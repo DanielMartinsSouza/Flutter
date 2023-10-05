@@ -1,44 +1,33 @@
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
-import 'content_division.dart';
+import '../content_division.dart';
 
-class ClientCard extends StatefulWidget {
-  final String clientName;
-  final String clientEmail;
-  final String clientGender;
-  final String dateBirth;
-  final int clientCPF;
-  final int clientNumber;
-  const ClientCard({
+class ProductCard extends StatelessWidget {
+  final String productName;
+  final String brand;
+  final String category;
+  final int amount;
+  final int value;
+  const ProductCard({
     super.key,
-    required this.clientName,
-    required this.clientEmail,
-    required this.clientGender,
-    required this.dateBirth,
-    required this.clientCPF,
-    required this.clientNumber,
+    required this.productName,
+    required this.brand,
+    required this.category,
+    required this.amount,
+    required this.value,
   });
 
   @override
-  State<ClientCard> createState() => _ClientCardState();
-}
-
-class _ClientCardState extends State<ClientCard> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
       child: BoxCard(
         boxContent: Column(
           children: [
             Text(
-              widget.clientName,
+              productName,
               style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(
-              widget.clientEmail,
-              style: Theme.of(context).textTheme.bodyMedium,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -47,18 +36,18 @@ class _ClientCardState extends State<ClientCard> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Row(
                       children: <Text>[
                         Text(
-                          'Gênero: ',
+                          'Quantidade: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.clientGender,
+                          amount.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -66,23 +55,11 @@ class _ClientCardState extends State<ClientCard> {
                     Row(
                       children: <Text>[
                         Text(
-                          'Nascimento: ',
+                          'Valor: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.dateBirth,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Text>[
-                        Text(
-                          'CPF: ',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Text(
-                          widget.clientCPF.toString(),
+                          value.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -90,11 +67,23 @@ class _ClientCardState extends State<ClientCard> {
                     Row(
                       children: <Text>[
                         Text(
-                          'Celular: ',
+                          'Marca: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.clientNumber.toString(),
+                          brand,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Text>[
+                        Text(
+                          'Categoria: ',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        Text(
+                          category,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],

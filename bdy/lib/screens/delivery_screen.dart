@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/sale_card.dart';
+import '../components/cards/sale_card.dart';
 import '../themes/theme_colors.dart';
 
 class DeliveryScreen extends StatefulWidget {

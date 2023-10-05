@@ -1,7 +1,7 @@
 import 'package:bdy/components/navigation_side_bar/side_bar.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
-import '../../components/sale_card.dart';
+import '../../components/cards/sale_card.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});

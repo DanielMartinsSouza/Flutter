@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'box_card.dart';
-import 'content_division.dart';
+import '../content_division.dart';
 
 class SaleCard extends StatelessWidget {
   final String client;

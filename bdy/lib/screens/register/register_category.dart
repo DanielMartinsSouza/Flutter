@@ -1,6 +1,6 @@
 import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
-import '../../components/category_card.dart';
+import '../../components/cards/category_card.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterCategory extends StatelessWidget {

@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
-import 'content_division.dart';
+import '../content_division.dart';
 
-class ProductCard extends StatelessWidget {
-  final String productName;
-  final String brand;
-  final String category;
-  final int amount;
-  final int value;
-  const ProductCard({
+class ClientCard extends StatefulWidget {
+  final String clientName;
+  final String clientEmail;
+  final String clientGender;
+  final String dateBirth;
+  final int clientCPF;
+  final int clientNumber;
+  const ClientCard({
     super.key,
-    required this.productName,
-    required this.brand,
-    required this.category,
-    required this.amount,
-    required this.value,
+    required this.clientName,
+    required this.clientEmail,
+    required this.clientGender,
+    required this.dateBirth,
+    required this.clientCPF,
+    required this.clientNumber,
   });
 
   @override
+  State<ClientCard> createState() => _ClientCardState();
+}
+
+class _ClientCardState extends State<ClientCard> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      padding: EdgeInsets.only(top: 16, left: 16, right: 16),
       child: BoxCard(
         boxContent: Column(
           children: [
             Text(
-              productName,
+              widget.clientName,
               style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(
+              widget.clientEmail,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -36,18 +47,18 @@ class ProductCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
+              children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: [
                     Row(
                       children: <Text>[
                         Text(
-                          'Quantidade: ',
+                          'Gênero: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          amount.toString(),
+                          widget.clientGender,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -55,23 +66,11 @@ class ProductCard extends StatelessWidget {
                     Row(
                       children: <Text>[
                         Text(
-                          'Valor: ',
+                          'Nascimento: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          value.toString(),
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Text>[
-                        Text(
-                          'Marca: ',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Text(
-                          brand,
+                          widget.dateBirth,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -79,11 +78,23 @@ class ProductCard extends StatelessWidget {
                     Row(
                       children: <Text>[
                         Text(
-                          'Categoria: ',
+                          'CPF: ',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          category,
+                          widget.clientCPF.toString(),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Text>[
+                        Text(
+                          'Celular: ',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        Text(
+                          widget.clientNumber.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
