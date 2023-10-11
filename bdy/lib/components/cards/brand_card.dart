@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'box_card.dart';
 
 class BrandCard extends StatelessWidget {
-  final String brand;
+  final String name;
 
-  const BrandCard({
-    super.key,
-    required this.brand,
-  });
+  BrandCard(this.name, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class BrandCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              brand,
+              name,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),

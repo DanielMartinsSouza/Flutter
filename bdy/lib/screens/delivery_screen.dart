@@ -30,6 +30,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
               amount: 1,
               delivery: false,
               pay: false,
+              status: false,
             ),
             SaleCard(
               client: 'Daniel Martins de Souza',
@@ -40,6 +41,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
               amount: 1,
               delivery: true,
               pay: true,
+              status: true,
             ),
           ],
         ),

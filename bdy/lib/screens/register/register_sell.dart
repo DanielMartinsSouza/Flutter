@@ -6,15 +6,11 @@ class RegisterSell extends StatelessWidget {
   RegisterSell({Key? key}) : super(key: key);
 
   final TextEditingController _clientController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _cpfController = TextEditingController();
   final TextEditingController _brandController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _itemController = TextEditingController();
   final TextEditingController _valueController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-  final TextEditingController _valueSellController = TextEditingController();
-  final TextEditingController _formPaymentController = TextEditingController();
   final TextEditingController _deliveryController = TextEditingController();
 
   final _formSellKey = GlobalKey<FormState>();
@@ -64,54 +60,6 @@ class RegisterSell extends StatelessWidget {
                     label: Text("Nome do Cliente"),
                   ),
                   keyboardType: TextInputType.name,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                child: TextFormField(
-                  validator: (String? value) {
-                    if (Validator().valueValidator(value)) {
-                      return 'Insira o celular';
-                    }
-                    return null;
-                  },
-                  style: const TextStyle(color: ThemeColors.mainColor),
-                  controller: _phoneController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    prefixIcon: Icon(Icons.phone_android),
-                    label: Text("Celular"),
-                  ),
-                  keyboardType: TextInputType.number,
-                  maxLength: 11,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                child: TextFormField(
-                  validator: (String? value) {
-                    if (Validator().valueValidator(value)) {
-                      return 'Insira o CPF';
-                    }
-                    return null;
-                  },
-                  style: const TextStyle(color: ThemeColors.mainColor),
-                  controller: _cpfController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    prefixIcon: Icon(Icons.perm_identity),
-                    label: Text("CPF"),
-                  ),
-                  keyboardType: TextInputType.number,
-                  maxLength: 11,
                 ),
               ),
               Padding(
@@ -251,52 +199,6 @@ class RegisterSell extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                child: TextFormField(
-                  validator: (String? value) {
-                    if (Validator().valueValidator(value)) {
-                      return 'Insira a forma de pagamento';
-                    }
-                    return null;
-                  },
-                  style: const TextStyle(color: ThemeColors.mainColor),
-                  controller: _formPaymentController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    prefixIcon: Icon(Icons.wallet_outlined),
-                    label: Text("Forma de pagamento"),
-                  ),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                child: TextFormField(
-                  validator: (String? value) {
-                    if (Validator().valueValidator(value)) {
-                      return 'Insira valor total da compra';
-                    }
-                    return null;
-                  },
-                  style: const TextStyle(color: ThemeColors.mainColor),
-                  controller: _valueSellController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    prefixIcon: Icon(Icons.add_shopping_cart),
-                    label: (Text("Valor total da compra")),
-                  ),
-                  keyboardType: TextInputType.number,
                 ),
               ),
               Padding(

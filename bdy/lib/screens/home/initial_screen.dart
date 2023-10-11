@@ -30,6 +30,7 @@ class _InitialScreenState extends State<InitialScreen> {
             amount: 1,
             delivery: true,
             pay: true,
+            status: true,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -40,6 +41,7 @@ class _InitialScreenState extends State<InitialScreen> {
             amount: 1,
             delivery: false,
             pay: false,
+            status: false,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -50,6 +52,7 @@ class _InitialScreenState extends State<InitialScreen> {
             amount: 1,
             delivery: true,
             pay: true,
+            status: true,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -60,6 +63,7 @@ class _InitialScreenState extends State<InitialScreen> {
             amount: 1,
             delivery: false,
             pay: false,
+            status: false,
           ),
           SaleCard(
             client: 'Daniel Martins de Souza',
@@ -70,6 +74,7 @@ class _InitialScreenState extends State<InitialScreen> {
             amount: 1,
             delivery: true,
             pay: true,
+            status: false,
           ),
         ],
       ),

@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "diffEditor.codeLens": true,
+    "editor.cursorBlinking": "blink",
+    "editor.find.autoFindInSelection": "always"
+}

@@ -11,6 +11,7 @@ class SaleCard extends StatelessWidget {
   final int amount;
   final bool delivery;
   final bool pay;
+  final bool status;
 
   const SaleCard({
     Key? key,
@@ -22,6 +23,7 @@ class SaleCard extends StatelessWidget {
     required this.amount,
     required this.delivery,
     required this.pay,
+    required this.status,
   }) : super(key: key);
 
   @override
@@ -103,6 +105,21 @@ class SaleCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 110,
+                          child: Text('Marca:'),
+                        ),
+                        Expanded(
+                          child: Text(
+                            brand,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 110,
                           child: Text('Valor:'),
                         ),
                         Expanded(
@@ -144,9 +161,38 @@ class SaleCard extends StatelessWidget {
                         )
                       ],
                     ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 110,
+                          child: Text('Status:'),
+                        ),
+                        Expanded(
+                          child: Text(
+                            (status == true) ? 'Finalizado' : 'Não Finalizado',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ContentDivision(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.add_business)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.delivery_dining)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+              ],
             ),
           ],
         ),
