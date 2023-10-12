@@ -6,6 +6,7 @@ import 'package:bdy/screens/register/register_sell.dart';
 import 'package:bdy/screens/stock_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
+import '../../screens/brand_screen.dart';
 import '../../screens/client_screen.dart';
 import '../../screens/delivery_screen.dart';
 
@@ -84,6 +85,16 @@ class SideBar extends StatelessWidget {
               ),
               text: const Text('Produtos'),
               route: ProductScreen(),
+              exit: false,
+              menu: false,
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.store_mall_directory_outlined,
+                color: ThemeColors.mainColor,
+              ),
+              text: const Text('Marcas'),
+              route: BrandScreen(),
               exit: false,
               menu: false,
             ),

@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                         child: TextFormField(
                           validator: (String? value) {
                             if (Validator().valueValidator(value)) {
-                              return 'Insira o celular';
+                              return 'Insira a senha';
                             }
                             return null;
                           },
