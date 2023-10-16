@@ -1,4 +1,3 @@
-import 'package:bdy/components/validator.dart';
 import 'package:bdy/data/brand_dao.dart';
 import 'package:bdy/screens/register/register_brand.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,11 @@ class _BrandScreenState extends State<BrandScreen> {
       appBar: AppBar(
         title: const Text('Registro de Marca'),
         actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: Icon(Icons.refresh)),
           IconButton(
             onPressed: () {
               Navigator.push(

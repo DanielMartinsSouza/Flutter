@@ -1,3 +1,4 @@
+import 'package:bdy/data/product_dao.dart';
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
@@ -8,7 +9,7 @@ class ProductCard extends StatelessWidget {
   final String brand;
   final String category;
   final int amount;
-  final int value;
+  final double value;
   const ProductCard({
     super.key,
     required this.productName,
@@ -91,7 +92,11 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
                 IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      ProductDao().delete(productName);
+                    },
+                    icon: Icon(Icons.delete)),
               ],
             ),
           ],

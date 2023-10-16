@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/cards/product_card.dart';
+import '../data/product_dao.dart';
 import '../themes/theme_colors.dart';
-import 'register/register_brand.dart';
-import 'register/register_category.dart';
 import 'register/register_product.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -18,114 +17,96 @@ class _ProductScreenState extends State<ProductScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Produtos'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: Icon(Icons.refresh)),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (contextInitialScreen) => RegisterProduct(),
+                ),
+              ).then((value) => setState(() {}));
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
       backgroundColor: ThemeColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-              child: ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(ThemeColors.mainColor),
+      body: FutureBuilder<List<ProductCard>>(
+        future: ProductDao().findAll(),
+        builder: (context, snapshot) {
+          List<ProductCard>? products = snapshot.data;
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
                 ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content:
-                          Text('Direcionado para tela de registro de produto'),
-                    ),
-                  );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (contextNew) => RegisterProduct(),
-                    ),
-                  );
-                },
-                child: const Text("Registrar um novo produto"),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 16, right: 16),
-              child: ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(ThemeColors.mainColor),
+              );
+            case ConnectionState.waiting:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
                 ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                          'Direcionado para tela de registro de categoria'),
-                    ),
-                  );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (contextNew) => RegisterCategory(),
-                    ),
-                  );
-                },
-                child: const Text("Registrar uma nova categoria"),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 16, right: 16),
-              child: ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(ThemeColors.mainColor),
+              );
+            case ConnectionState.active:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
                 ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content:
-                          Text('Direcionado para tela de registro de marca'),
-                    ),
+              );
+            case ConnectionState.done:
+              if (snapshot.hasData && products != null) {
+                if (products.isNotEmpty) {
+                  return ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final ProductCard product = products[index];
+                      return product;
+                    },
                   );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (contextNew) => RegisterBrand(),
-                    ),
-                  );
-                },
-                child: const Text("Registrar uma nova marca"),
-              ),
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-              brand: 'Avon',
-              category: 'Perfume',
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-              brand: 'Avon',
-              category: 'Perfume',
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-              brand: 'Avon',
-              category: 'Perfume',
-            ),
-            ProductCard(
-              productName: 'Malbec',
-              amount: 5,
-              value: 100,
-              brand: 'Avon',
-              category: 'Perfume',
-            ),
-          ],
-        ),
+                }
+                return Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 128,
+                      ),
+                      Text(
+                        'Não tem nenhuma marca',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      )
+                    ],
+                  ),
+                );
+              }
+              return Text("Erro ao carregar marcas");
+          }
+        },
       ),
     );
   }

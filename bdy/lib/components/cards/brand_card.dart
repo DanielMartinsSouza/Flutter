@@ -1,3 +1,4 @@
+import 'package:bdy/data/brand_dao.dart';
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
@@ -20,8 +21,11 @@ class BrandCard extends StatelessWidget {
               name,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+            IconButton(
+                onPressed: () {
+                  BrandDao().delete(name);
+                },
+                icon: Icon(Icons.delete)),
           ],
         ),
       ),

@@ -4,14 +4,9 @@ import 'package:flutter/material.dart';
 import '../../components/cards/brand_card.dart';
 import '../../themes/theme_colors.dart';
 
-class RegisterBrand extends StatefulWidget {
+class RegisterBrand extends StatelessWidget {
   RegisterBrand({super.key});
 
-  @override
-  State<RegisterBrand> createState() => _RegisterBrandState();
-}
-
-class _RegisterBrandState extends State<RegisterBrand> {
   final TextEditingController _brandController = TextEditingController();
 
   final _formBrandKey = GlobalKey<FormState>();
@@ -82,8 +77,8 @@ class _RegisterBrandState extends State<RegisterBrand> {
                           content: Text('Marca registrado com sucesso'),
                         ),
                       );
+                      Navigator.pop(context);
                     }
-                    setState(() {});
                   },
                   child: const Text("Registrar Marca"),
                 ),

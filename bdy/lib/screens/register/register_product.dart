@@ -1,6 +1,8 @@
 import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
 
+import '../../components/cards/product_card.dart';
+import '../../data/product_dao.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterProduct extends StatelessWidget {
@@ -165,6 +167,13 @@ class RegisterProduct extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (_formProductKey.currentState!.validate()) {
+                        ProductDao().save(ProductCard(
+                          brand: _brandController.text,
+                          category: _categoryController.text,
+                          productName: _itemController.text,
+                          value: double.parse(_valueController.text),
+                          amount: int.parse(_amountController.text),
+                        ));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Produto registrado com sucesso'),

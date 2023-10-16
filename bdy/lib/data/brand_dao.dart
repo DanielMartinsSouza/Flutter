@@ -1,8 +1,19 @@
 import 'package:bdy/components/cards/brand_card.dart';
-import 'package:bdy/data/database.dart';
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BrandDao {
+  Future<Database> getDatabase(table) async {
+    final String path = join(await getDatabasesPath(), "t.db");
+    return openDatabase(
+      path,
+      onCreate: (db, version) {
+        db.execute(table);
+      },
+      version: 1,
+    );
+  }
+
   static const String tableSql = """CREATE TABLE $_tablename(
   $_brandName TEXT
 )""";
@@ -12,7 +23,7 @@ class BrandDao {
 
   save(BrandCard brand) async {
     print('Dentro de save');
-    final Database db = await getDatabase();
+    final Database db = await getDatabase(tableSql);
     var itemExist = await find(brand.name);
     Map<String, dynamic> brandMap = toMap(brand);
 
@@ -26,7 +37,7 @@ class BrandDao {
 
   Future<List<BrandCard>> findAll() async {
     print('dentro do findAll');
-    final Database db = await getDatabase();
+    final Database db = await getDatabase(tableSql);
     final List<Map<String, dynamic>> result = await db.query(_tablename);
     print(result);
     return toList(result);
@@ -34,7 +45,7 @@ class BrandDao {
 
   Future<List<BrandCard>> find(String brand) async {
     print('dentro do find');
-    final Database db = await getDatabase();
+    final Database db = await getDatabase(tableSql);
     final List<Map<String, dynamic>> result = await db.query(
       _tablename,
       where: '$_brandName = ?',
@@ -46,7 +57,7 @@ class BrandDao {
 
   delete(String brandName) async {
     print('Dentro do delete');
-    final Database db = await getDatabase();
+    final Database db = await getDatabase(tableSql);
     return await db.delete(
       _tablename,
       where: '$_brandName = ?',
