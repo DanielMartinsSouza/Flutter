@@ -6,7 +6,8 @@ import '../../data/product_dao.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterProduct extends StatelessWidget {
-  RegisterProduct({super.key});
+  final ProductCard product;
+  RegisterProduct({super.key, required this.product});
 
   final TextEditingController _brandController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
@@ -15,9 +16,24 @@ class RegisterProduct extends StatelessWidget {
   final TextEditingController _amountController = TextEditingController();
 
   final _formProductKey = GlobalKey<FormState>();
+  bool _edit = false;
+  String productName = "";
+
+  void updateValue() {
+    if (product.productName != "") {
+      _edit = true;
+      productName = product.productName;
+    }
+    _brandController.text = product.brand;
+    _categoryController.text = product.category;
+    _itemController.text = product.productName;
+    _valueController.text = product.value.toString();
+    _amountController.text = product.amount.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
+    updateValue();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Produto'),
@@ -160,30 +176,60 @@ class RegisterProduct extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   width: 200,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(ThemeColors.mainColor),
-                    ),
-                    onPressed: () {
-                      if (_formProductKey.currentState!.validate()) {
-                        ProductDao().save(ProductCard(
-                          brand: _brandController.text,
-                          category: _categoryController.text,
-                          productName: _itemController.text,
-                          value: double.parse(_valueController.text),
-                          amount: int.parse(_amountController.text),
-                        ));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Produto registrado com sucesso'),
+                  child: _edit
+                      ? ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
                           ),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text("Registrar produto"),
-                  ),
+                          onPressed: () {
+                            if (_formProductKey.currentState!.validate()) {
+                              ProductDao().update(
+                                ProductCard(
+                                  brand: _brandController.text,
+                                  category: _categoryController.text,
+                                  productName: _itemController.text,
+                                  value: double.parse(_valueController.text),
+                                  amount: int.parse(_amountController.text),
+                                ),
+                                productName,
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Produto atualizado com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Atualizar produto"),
+                        )
+                      : ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
+                          ),
+                          onPressed: () {
+                            if (_formProductKey.currentState!.validate()) {
+                              ProductDao().save(ProductCard(
+                                brand: _brandController.text,
+                                category: _categoryController.text,
+                                productName: _itemController.text,
+                                value: double.parse(_valueController.text),
+                                amount: int.parse(_amountController.text),
+                              ));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Produto registrado com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Registrar produto"),
+                        ),
                 ),
               ),
             ],

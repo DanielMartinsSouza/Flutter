@@ -1,22 +1,22 @@
+import 'package:bdy/components/cards/category_card.dart';
+import 'package:bdy/screens/register/register_category.dart';
 import 'package:flutter/material.dart';
-import '../components/cards/product_card.dart';
-import '../data/product_dao.dart';
-import '../themes/theme_colors.dart';
-import 'register/register_product.dart';
 
-class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key});
+import '../themes/theme_colors.dart';
+
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
 
   @override
-  State<ProductScreen> createState() => _ProductScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _ProductScreenState extends State<ProductScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Produtos'),
+        title: const Text('Registro de Marca'),
         actions: [
           IconButton(
               onPressed: () {
@@ -28,13 +28,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (contextInitialScreen) => RegisterProduct(
-                      product: ProductCard(
-                          productName: "",
-                          brand: "",
-                          category: "",
-                          amount: 0,
-                          value: 0)),
+                  builder: (contextInitialScreen) => RegisterCategory(),
                 ),
               ).then((value) => setState(() {}));
             },
@@ -43,10 +37,10 @@ class _ProductScreenState extends State<ProductScreen> {
         ],
       ),
       backgroundColor: ThemeColors.backgroundColor,
-      body: FutureBuilder<List<ProductCard>>(
-        future: ProductDao().findAll(),
+      body: FutureBuilder<List<CategoryCard>>(
+        future: CategoryDao().findAll(),
         builder: (context, snapshot) {
-          List<ProductCard>? products = snapshot.data;
+          List<CategoryCard>? categories = snapshot.data;
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return Center(
@@ -85,13 +79,13 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               );
             case ConnectionState.done:
-              if (snapshot.hasData && products != null) {
-                if (products.isNotEmpty) {
+              if (snapshot.hasData && categories != null) {
+                if (categories.isNotEmpty) {
                   return ListView.builder(
-                    itemCount: products.length,
+                    itemCount: categories.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final ProductCard product = products[index];
-                      return product;
+                      final CategoryCard category = categories[index];
+                      return category;
                     },
                   );
                 }

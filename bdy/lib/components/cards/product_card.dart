@@ -1,4 +1,5 @@
 import 'package:bdy/data/product_dao.dart';
+import 'package:bdy/screens/register/register_product.dart';
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
@@ -10,7 +11,7 @@ class ProductCard extends StatelessWidget {
   final String category;
   final int amount;
   final double value;
-  const ProductCard({
+  ProductCard({
     super.key,
     required this.productName,
     required this.brand,
@@ -91,12 +92,27 @@ class ProductCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (contextProduct) => RegisterProduct(
+                              product: ProductCard(
+                                  productName: productName,
+                                  brand: brand,
+                                  category: category,
+                                  amount: amount,
+                                  value: value)),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.add_box)),
                 IconButton(
                     onPressed: () {
                       ProductDao().delete(productName);
                     },
-                    icon: Icon(Icons.delete)),
+                    icon: const Icon(Icons.delete)),
               ],
             ),
           ],
