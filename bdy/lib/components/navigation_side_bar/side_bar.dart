@@ -1,4 +1,5 @@
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
+import 'package:bdy/screens/category_screen.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
 import 'package:bdy/screens/product_screen.dart';
@@ -95,6 +96,16 @@ class SideBar extends StatelessWidget {
               ),
               text: const Text('Marcas'),
               route: BrandScreen(),
+              exit: false,
+              menu: false,
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.category,
+                color: ThemeColors.mainColor,
+              ),
+              text: const Text('Categorias'),
+              route: CategoryScreen(),
               exit: false,
               menu: false,
             ),

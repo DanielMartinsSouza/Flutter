@@ -1,4 +1,5 @@
 import 'package:bdy/components/validator.dart';
+import 'package:bdy/data/category_dao.dart';
 import 'package:flutter/material.dart';
 import '../../components/cards/category_card.dart';
 import '../../themes/theme_colors.dart';
@@ -69,6 +70,9 @@ class RegisterCategory extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (_formCategoryKey.currentState!.validate()) {
+                          CategoryDao().save(
+                            CategoryCard(category: _categoryController.text),
+                          );
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('categoria registrado com sucesso'),
@@ -82,16 +86,6 @@ class RegisterCategory extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Column(
-            children: <CategoryCard>[
-              CategoryCard(
-                category: 'Perfume',
-              ),
-              CategoryCard(
-                category: 'Perfume',
-              ),
-            ],
           ),
         ],
       ),

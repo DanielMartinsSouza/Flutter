@@ -1,3 +1,4 @@
+import 'package:bdy/data/category_dao.dart';
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
@@ -23,8 +24,11 @@ class CategoryCard extends StatelessWidget {
               category,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+            IconButton(
+                onPressed: () {
+                  CategoryDao().delete(category);
+                },
+                icon: Icon(Icons.delete)),
           ],
         ),
       ),

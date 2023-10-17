@@ -2,6 +2,7 @@ import 'package:bdy/components/cards/category_card.dart';
 import 'package:bdy/screens/register/register_category.dart';
 import 'package:flutter/material.dart';
 
+import '../data/category_dao.dart';
 import '../themes/theme_colors.dart';
 
 class CategoryScreen extends StatefulWidget {
