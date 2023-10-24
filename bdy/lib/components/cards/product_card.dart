@@ -98,12 +98,14 @@ class ProductCard extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (contextProduct) => RegisterProduct(
-                              product: ProductCard(
-                                  productName: productName,
-                                  brand: brand,
-                                  category: category,
-                                  amount: amount,
-                                  value: value)),
+                            product: ProductCard(
+                              productName: productName,
+                              brand: brand,
+                              category: category,
+                              amount: amount,
+                              value: value,
+                            ),
+                          ),
                         ),
                       );
                     },

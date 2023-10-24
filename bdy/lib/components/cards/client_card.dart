@@ -1,9 +1,11 @@
+import 'package:bdy/data/client_dao.dart';
+import 'package:bdy/screens/register/register_client.dart';
 import 'package:flutter/material.dart';
 
 import 'box_card.dart';
 import '../content_division.dart';
 
-class ClientCard extends StatefulWidget {
+class ClientCard extends StatelessWidget {
   final String clientName;
   final String clientEmail;
   final String clientGender;
@@ -21,11 +23,6 @@ class ClientCard extends StatefulWidget {
   });
 
   @override
-  State<ClientCard> createState() => _ClientCardState();
-}
-
-class _ClientCardState extends State<ClientCard> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 16, left: 16, right: 16),
@@ -33,11 +30,11 @@ class _ClientCardState extends State<ClientCard> {
         boxContent: Column(
           children: [
             Text(
-              widget.clientName,
+              clientName,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
-              widget.clientEmail,
+              clientEmail,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Padding(
@@ -58,7 +55,7 @@ class _ClientCardState extends State<ClientCard> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.clientGender,
+                          clientGender,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -70,7 +67,7 @@ class _ClientCardState extends State<ClientCard> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.dateBirth,
+                          dateBirth,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -82,7 +79,7 @@ class _ClientCardState extends State<ClientCard> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.clientCPF.toString(),
+                          clientCPF.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -94,15 +91,37 @@ class _ClientCardState extends State<ClientCard> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          widget.clientNumber.toString(),
+                          clientNumber.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (contextClient) => RegisterClient(
+                            client: ClientCard(
+                              clientName: clientName,
+                              clientEmail: clientEmail,
+                              clientGender: clientGender,
+                              dateBirth: dateBirth,
+                              clientCPF: clientCPF,
+                              clientNumber: clientNumber,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.add_box)),
+                IconButton(
+                    onPressed: () {
+                      ClientDao().delete(clientName);
+                    },
+                    icon: Icon(Icons.delete)),
               ],
             ),
           ],

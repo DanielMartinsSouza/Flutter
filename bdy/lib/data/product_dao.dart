@@ -73,10 +73,14 @@ class ProductDao {
 
   save(ProductCard product) async {
     final Database db = await getDatabase(tableSql);
-    //var itemExist = await find(product.productName);
+    var itemExist = await find(product.productName);
     Map<String, dynamic> productMap = toMap(product);
 
-    return await db.insert(_tablename, productMap);
+    if (itemExist.isEmpty) {
+      return await db.insert(_tablename, productMap);
+    } else {
+      print("Produto Existe");
+    }
   }
 
   Future<List<ProductCard>> find(String productName) async {

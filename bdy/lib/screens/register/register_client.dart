@@ -1,9 +1,12 @@
+import 'package:bdy/components/cards/client_card.dart';
+import 'package:bdy/data/client_dao.dart';
 import 'package:flutter/material.dart';
 import '../../components/validator.dart';
 import '../../themes/theme_colors.dart';
 
 class RegisterClient extends StatelessWidget {
-  RegisterClient({super.key});
+  final ClientCard client;
+  RegisterClient({super.key, required this.client});
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -14,8 +17,25 @@ class RegisterClient extends StatelessWidget {
 
   final _formClientKey = GlobalKey<FormState>();
 
+  bool _edit = false;
+  String clientName = "";
+
+  void updateValue() {
+    if (client.clientName != "") {
+      _edit = true;
+      clientName = client.clientName;
+    }
+    _nameController.text = client.clientName;
+    _genderController.text = client.clientGender;
+    _emailController.text = client.clientEmail;
+    _dateBirthController.text = client.dateBirth;
+    _cpfController.text = client.clientCPF.toString();
+    _numberController.text = client.clientNumber.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
+    updateValue();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Cliente'),
@@ -181,23 +201,63 @@ class RegisterClient extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   width: 200,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(ThemeColors.mainColor),
-                    ),
-                    onPressed: () {
-                      if (_formClientKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Cliente registrado com sucesso'),
+                  child: _edit
+                      ? ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
                           ),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text("Registrar cliente"),
-                  ),
+                          onPressed: () {
+                            if (_formClientKey.currentState!.validate()) {
+                              ClientDao().update(
+                                ClientCard(
+                                  clientName: _nameController.text,
+                                  clientEmail: _emailController.text,
+                                  clientGender: _genderController.text,
+                                  dateBirth: _dateBirthController.text,
+                                  clientCPF: int.parse(_cpfController.text),
+                                  clientNumber:
+                                      int.parse(_numberController.text),
+                                ),
+                                clientName,
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text("Cliente atualizado com sucesso"),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Atualizar cliente"),
+                        )
+                      : ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
+                          ),
+                          onPressed: () {
+                            if (_formClientKey.currentState!.validate()) {
+                              ClientDao().save(ClientCard(
+                                clientName: _nameController.text,
+                                clientEmail: _emailController.text,
+                                clientGender: _genderController.text,
+                                dateBirth: _dateBirthController.text,
+                                clientCPF: int.parse(_cpfController.text),
+                                clientNumber: int.parse(_numberController.text),
+                              ));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Cliente registrado com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Registrar cliente"),
+                        ),
                 ),
               ),
             ],
