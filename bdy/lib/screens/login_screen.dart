@@ -1,4 +1,6 @@
+import 'package:bdy/components/user.dart';
 import 'package:bdy/components/validator.dart';
+import 'package:bdy/data/user_dao.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/register/register_login_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
@@ -121,8 +123,13 @@ class LoginScreen extends StatelessWidget {
                                   backgroundColor: MaterialStatePropertyAll(
                                       ThemeColors.mainColor),
                                 ),
-                                onPressed: () {
-                                  if (_formLoginKey.currentState!.validate()) {
+                                onPressed: () async {
+                                  var login = await UserDao().login(
+                                      _userController.text,
+                                      _passwordController.text);
+                                  if (login.isEmpty) {
+                                    print("Login errado");
+                                  } else {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

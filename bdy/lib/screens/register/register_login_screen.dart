@@ -1,4 +1,6 @@
+import 'package:bdy/components/user.dart';
 import 'package:bdy/components/validator.dart';
+import 'package:bdy/data/user_dao.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -144,7 +146,15 @@ class RegisterLoginScreen extends StatelessWidget {
                             ),
                             onPressed: () {
                               if (_formRegisterLoginKey.currentState!
-                                  .validate()) {
+                                      .validate() &&
+                                  _passwordController.text ==
+                                      _confirmPasswordController.text) {
+                                UserDao().save(User(
+                                  user: _userController.text,
+                                  password: _passwordController.text,
+                                  confirmPassword:
+                                      _confirmPasswordController.text,
+                                ));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('Registrado com sucesso'),
