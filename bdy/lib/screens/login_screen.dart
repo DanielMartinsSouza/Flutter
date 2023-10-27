@@ -1,4 +1,3 @@
-import 'package:bdy/components/user.dart';
 import 'package:bdy/components/validator.dart';
 import 'package:bdy/data/user_dao.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
