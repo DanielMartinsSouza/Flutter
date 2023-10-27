@@ -208,6 +208,14 @@ class RegisterSell extends StatelessWidget {
                     if (Validator().valueValidator(value) ||
                         value != 'Retirada' && value != 'Entrega') {
                       return 'Insira Retirada ou Entrega';
+                    } else {
+                      if (value == "Retirada") {
+                        _deliveryController.text = "0";
+                        print(_deliveryController.text);
+                      } else if (value == "Entrega") {
+                        _deliveryController.text = "1";
+                        print(_deliveryController.text);
+                      }
                     }
                     return null;
                   },

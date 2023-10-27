@@ -9,9 +9,9 @@ class SaleCard extends StatelessWidget {
   final String category;
   final int value;
   final int amount;
-  final bool delivery;
-  final bool pay;
-  final bool status;
+  final int delivery;
+  final int pay;
+  final int status;
 
   const SaleCard({
     Key? key,
@@ -154,7 +154,7 @@ class SaleCard extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            (pay == true) ? 'Em receber' : 'Pago',
+                            (pay == 0) ? 'Em receber' : 'Pago',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -169,7 +169,22 @@ class SaleCard extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            (status == true) ? 'Finalizado' : 'Não Finalizado',
+                            (status == 0) ? 'Não Finalizado' : 'Finalizado',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 110,
+                          child: Text('Status:'),
+                        ),
+                        Expanded(
+                          child: Text(
+                            (delivery == 0) ? 'Retirada' : 'Entrega',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
