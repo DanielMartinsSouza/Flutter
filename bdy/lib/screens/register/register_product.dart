@@ -1,6 +1,5 @@
 import 'package:bdy/components/validator.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/cards/product_card.dart';
 import '../../data/product_dao.dart';
 import '../../themes/theme_colors.dart';

@@ -1,9 +1,12 @@
+import 'package:bdy/components/cards/sale_card.dart';
 import 'package:bdy/components/validator.dart';
+import 'package:bdy/data/sell_dao.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class RegisterSell extends StatelessWidget {
-  RegisterSell({Key? key}) : super(key: key);
+  final SaleCard sell;
+  RegisterSell({Key? key, required this.sell}) : super(key: key);
 
   final TextEditingController _clientController = TextEditingController();
   final TextEditingController _brandController = TextEditingController();
@@ -14,6 +17,20 @@ class RegisterSell extends StatelessWidget {
   final TextEditingController _deliveryController = TextEditingController();
 
   final _formSellKey = GlobalKey<FormState>();
+
+  bool _edit = false;
+  String client = "";
+
+  void updateValue() {
+    if (sell.client != "") {
+      _edit = true;
+      client = sell.client;
+    }
+    _amountController.text = sell.amount.toString();
+    _brandController.text = sell.brand;
+    _categoryController.text = sell.category;
+    _clientController.text = sell.client;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -238,23 +255,70 @@ class RegisterSell extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   width: 200,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(ThemeColors.mainColor),
-                    ),
-                    onPressed: () {
-                      if (_formSellKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Compra efetuada com sucesso'),
+                  child: _edit
+                      ? ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
                           ),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text("Finalizar Compra"),
-                  ),
+                          onPressed: () {
+                            if (_formSellKey.currentState!.validate()) {
+                              SellDao().update(
+                                  SaleCard(
+                                    client: _clientController.text,
+                                    item: _itemController.text,
+                                    brand: _brandController.text,
+                                    category: _categoryController.text,
+                                    value: int.parse(_valueController.text),
+                                    amount: int.parse(_amountController.text),
+                                    delivery:
+                                        int.parse(_deliveryController.text),
+                                    pay: sell.pay,
+                                    status: sell.status,
+                                  ),
+                                  _itemController.text,
+                                  _clientController.text);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Produto atualizado com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Atualizar produto"),
+                        )
+                      : ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(ThemeColors.mainColor),
+                          ),
+                          onPressed: () {
+                            if (_formSellKey.currentState!.validate()) {
+                              SellDao().save(
+                                SaleCard(
+                                  client: _clientController.text,
+                                  item: _itemController.text,
+                                  brand: _brandController.text,
+                                  category: _categoryController.text,
+                                  value: int.parse(_valueController.text),
+                                  amount: int.parse(_amountController.text),
+                                  delivery: int.parse(_deliveryController.text),
+                                  pay: 0,
+                                  status: 0,
+                                ),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Compra efetuada com sucesso'),
+                                ),
+                              );
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text("Finalizar Compra"),
+                        ),
                 ),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:bdy/components/cards/sale_card.dart';
 import 'package:bdy/components/navigation_side_bar/side_menu_item.dart';
 import 'package:bdy/screens/category_screen.dart';
 import 'package:bdy/screens/home/initial_screen.dart';
@@ -75,7 +76,18 @@ class SideBar extends StatelessWidget {
                 color: ThemeColors.mainColor,
               ),
               text: Text('Realizar Venda'),
-              route: RegisterSell(),
+              route: RegisterSell(
+                sell: SaleCard(
+                    client: "",
+                    item: "",
+                    brand: "",
+                    category: "",
+                    value: 0,
+                    amount: 0,
+                    delivery: 0,
+                    pay: 0,
+                    status: 0),
+              ),
               exit: false,
               menu: false,
             ),
