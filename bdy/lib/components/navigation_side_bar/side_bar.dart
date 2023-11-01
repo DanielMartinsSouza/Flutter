@@ -5,7 +5,6 @@ import 'package:bdy/screens/home/initial_screen.dart';
 import 'package:bdy/screens/login_screen.dart';
 import 'package:bdy/screens/product_screen.dart';
 import 'package:bdy/screens/register/register_sell.dart';
-import 'package:bdy/screens/stock_screen.dart';
 import 'package:bdy/themes/theme_colors.dart';
 import 'package:flutter/material.dart';
 import '../../screens/brand_screen.dart';
