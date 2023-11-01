@@ -1,10 +1,11 @@
 import 'package:bdy/components/cards/sale_card.dart';
+import 'package:bdy/data/database.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SellDao {
   Future<Database> getDatabase(table) async {
-    final String path = join(await getDatabasesPath(), "te.db");
+    final String path = join(await getDatabasesPath(), "s.db");
     return openDatabase(
       path,
       onCreate: (db, version) {
@@ -100,6 +101,16 @@ class SellDao {
       _tablename,
       where: '$_item = ? AND $_client = ?',
       whereArgs: [item, client],
+    );
+    return toList(result);
+  }
+
+  Future<List<SaleCard>> findDelivery() async {
+    final Database db = await getDatabase(tableSql);
+    final List<Map<String, dynamic>> result = await db.query(
+      _tablename,
+      where: '$_delivery = ?',
+      whereArgs: [1],
     );
     return toList(result);
   }

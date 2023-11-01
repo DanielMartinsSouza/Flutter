@@ -103,14 +103,14 @@ class _ProductScreenState extends State<ProductScreen> {
                         size: 128,
                       ),
                       Text(
-                        'Não tem nenhuma marca',
+                        'Não tem nenhum produto',
                         style: Theme.of(context).textTheme.titleMedium,
                       )
                     ],
                   ),
                 );
               }
-              return Text("Erro ao carregar marcas");
+              return Text("Erro ao carregar os produtos");
           }
         },
       ),

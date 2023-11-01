@@ -133,16 +133,6 @@ class SideBar extends StatelessWidget {
             ),
             SideMenuItem(
               icon: const Icon(
-                Icons.storefront_outlined,
-                color: ThemeColors.mainColor,
-              ),
-              text: const Text('Estoque'),
-              route: StockScreen(),
-              exit: false,
-              menu: false,
-            ),
-            SideMenuItem(
-              icon: const Icon(
                 Icons.delivery_dining,
                 color: ThemeColors.mainColor,
               ),

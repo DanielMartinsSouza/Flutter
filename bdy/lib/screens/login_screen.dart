@@ -123,19 +123,21 @@ class LoginScreen extends StatelessWidget {
                                       ThemeColors.mainColor),
                                 ),
                                 onPressed: () async {
-                                  var login = await UserDao().login(
-                                      _userController.text,
-                                      _passwordController.text);
-                                  if (login.isEmpty) {
-                                    print("Login errado");
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (contextInitialScreen) =>
-                                            InitialScreen(),
-                                      ),
-                                    ).then((value) => Navigator.pop(context));
+                                  if (_formLoginKey.currentState!.validate()) {
+                                    var login = await UserDao().login(
+                                        _userController.text,
+                                        _passwordController.text);
+                                    if (login.isEmpty) {
+                                      print("Login errado");
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (contextInitialScreen) =>
+                                              InitialScreen(),
+                                        ),
+                                      ).then((value) => Navigator.pop(context));
+                                    }
                                   }
                                 },
                                 child: const Text("Logar"),

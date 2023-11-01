@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/cards/sale_card.dart';
+import '../data/sell_dao.dart';
 import '../themes/theme_colors.dart';
 
 class DeliveryScreen extends StatefulWidget {
@@ -15,36 +16,85 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Entregas'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: Icon(Icons.refresh)),
+        ],
       ),
       backgroundColor: ThemeColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
-        child: ListView(
-          children: <SaleCard>[
-            SaleCard(
-              client: 'Daniel Martins de Souza',
-              item: 'Malbec',
-              brand: 'Oboticario',
-              category: 'Perfume',
-              value: 100,
-              amount: 1,
-              delivery: 0,
-              pay: 0,
-              status: 0,
-            ),
-            SaleCard(
-              client: 'Daniel Martins de Souza',
-              item: 'Malbec',
-              brand: 'Oboticario',
-              category: 'Perfume',
-              value: 100,
-              amount: 1,
-              delivery: 1,
-              pay: 1,
-              status: 1,
-            ),
-          ],
-        ),
+      body: FutureBuilder<List<SaleCard>>(
+        future: SellDao().findDelivery(),
+        builder: (context, snapshot) {
+          List<SaleCard>? sells = snapshot.data;
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
+                ),
+              );
+            case ConnectionState.waiting:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
+                ),
+              );
+            case ConnectionState.active:
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    Text(
+                      'Carregando',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
+                ),
+              );
+            case ConnectionState.done:
+              if (snapshot.hasData && sells != null) {
+                if (sells.isNotEmpty) {
+                  return ListView.builder(
+                    itemCount: sells.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final SaleCard sell = sells[index];
+                      return sell;
+                    },
+                  );
+                }
+                return Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 128,
+                      ),
+                      Text(
+                        'Não tem nenhuma nenhuma entrega',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      )
+                    ],
+                  ),
+                );
+              }
+              return Text("Erro ao carregar entregas");
+          }
+        },
       ),
     );
   }

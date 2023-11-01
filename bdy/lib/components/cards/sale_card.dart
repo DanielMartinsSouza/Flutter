@@ -1,3 +1,5 @@
+import 'package:bdy/data/sell_dao.dart';
+import 'package:bdy/screens/register/register_sell.dart';
 import 'package:flutter/material.dart';
 import 'box_card.dart';
 import '../content_division.dart';
@@ -202,11 +204,86 @@ class SaleCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.check)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.add_business)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delivery_dining)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.add_box)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      SellDao().update(
+                          SaleCard(
+                            client: client,
+                            item: item,
+                            brand: brand,
+                            category: category,
+                            value: value,
+                            amount: amount,
+                            delivery: delivery,
+                            pay: pay,
+                            status: (status == 0) ? 1 : 0,
+                          ),
+                          item,
+                          client);
+                    },
+                    icon: Icon(Icons.check)),
+                IconButton(
+                    onPressed: () {
+                      SellDao().update(
+                          SaleCard(
+                            client: client,
+                            item: item,
+                            brand: brand,
+                            category: category,
+                            value: value,
+                            amount: amount,
+                            delivery: delivery,
+                            pay: (pay == 0) ? 1 : 0,
+                            status: status,
+                          ),
+                          item,
+                          client);
+                    },
+                    icon: Icon(Icons.add_business)),
+                IconButton(
+                    onPressed: () {
+                      SellDao().update(
+                          SaleCard(
+                            client: client,
+                            item: item,
+                            brand: brand,
+                            category: category,
+                            value: value,
+                            amount: amount,
+                            delivery: (delivery == 0) ? 1 : 0,
+                            pay: pay,
+                            status: status,
+                          ),
+                          item,
+                          client);
+                    },
+                    icon: Icon(Icons.delivery_dining)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (contextSaleScreen) => RegisterSell(
+                            sell: SaleCard(
+                                client: client,
+                                item: item,
+                                brand: brand,
+                                category: category,
+                                value: value,
+                                amount: amount,
+                                delivery: delivery,
+                                pay: pay,
+                                status: status),
+                          ),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.add_box)),
+                IconButton(
+                    onPressed: () {
+                      SellDao().delete(item, client);
+                    },
+                    icon: Icon(Icons.delete)),
               ],
             ),
           ],

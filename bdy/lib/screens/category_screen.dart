@@ -98,14 +98,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         size: 128,
                       ),
                       Text(
-                        'Não tem nenhuma marca',
+                        'Não tem nenhuma categoria',
                         style: Theme.of(context).textTheme.titleMedium,
                       )
                     ],
                   ),
                 );
               }
-              return Text("Erro ao carregar marcas");
+              return Text("Erro ao carregar as categorias");
           }
         },
       ),

@@ -30,10 +30,14 @@ class RegisterSell extends StatelessWidget {
     _brandController.text = sell.brand;
     _categoryController.text = sell.category;
     _clientController.text = sell.client;
+    _deliveryController.text = sell.delivery.toString();
+    _valueController.text = sell.value.toString();
+    _itemController.text = sell.item.toString();
   }
 
   @override
   Widget build(BuildContext context) {
+    updateValue();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Realizar Venda'),
