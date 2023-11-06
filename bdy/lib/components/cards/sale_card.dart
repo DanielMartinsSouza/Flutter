@@ -1,6 +1,7 @@
 import 'package:bdy/data/sell_dao.dart';
 import 'package:bdy/screens/register/register_sell.dart';
 import 'package:flutter/material.dart';
+import '../confirmation_dialog.dart';
 import 'box_card.dart';
 import '../content_division.dart';
 
@@ -182,7 +183,7 @@ class SaleCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 110,
-                          child: Text('Status:'),
+                          child: Text('Expedição'),
                         ),
                         Expanded(
                           child: Text(
@@ -206,56 +207,77 @@ class SaleCard extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      SellDao().update(
-                          SaleCard(
-                            client: client,
-                            item: item,
-                            brand: brand,
-                            category: category,
-                            value: value,
-                            amount: amount,
-                            delivery: delivery,
-                            pay: pay,
-                            status: (status == 0) ? 1 : 0,
-                          ),
-                          item,
-                          client);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja alterar o status da venda?",
+                      ).then((valueConfirmation) async {
+                        if (valueConfirmation) {
+                          SellDao().update(
+                              SaleCard(
+                                client: client,
+                                item: item,
+                                brand: brand,
+                                category: category,
+                                value: value,
+                                amount: amount,
+                                delivery: delivery,
+                                pay: pay,
+                                status: (status == 0) ? 1 : 0,
+                              ),
+                              item,
+                              client);
+                        }
+                      });
                     },
                     icon: Icon(Icons.check)),
                 IconButton(
                     onPressed: () {
-                      SellDao().update(
-                          SaleCard(
-                            client: client,
-                            item: item,
-                            brand: brand,
-                            category: category,
-                            value: value,
-                            amount: amount,
-                            delivery: delivery,
-                            pay: (pay == 0) ? 1 : 0,
-                            status: status,
-                          ),
-                          item,
-                          client);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja alteração o status de pagamento?",
+                      ).then((valueConfirmation) async {
+                        if (valueConfirmation) {
+                          SellDao().update(
+                              SaleCard(
+                                client: client,
+                                item: item,
+                                brand: brand,
+                                category: category,
+                                value: value,
+                                amount: amount,
+                                delivery: delivery,
+                                pay: (pay == 0) ? 1 : 0,
+                                status: status,
+                              ),
+                              item,
+                              client);
+                        }
+                      });
                     },
                     icon: Icon(Icons.add_business)),
                 IconButton(
                     onPressed: () {
-                      SellDao().update(
-                          SaleCard(
-                            client: client,
-                            item: item,
-                            brand: brand,
-                            category: category,
-                            value: value,
-                            amount: amount,
-                            delivery: (delivery == 0) ? 1 : 0,
-                            pay: pay,
-                            status: status,
-                          ),
-                          item,
-                          client);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja alterar o status de expedição?",
+                      ).then((valueConfirmation) async {
+                        if (valueConfirmation) {
+                          SellDao().update(
+                              SaleCard(
+                                client: client,
+                                item: item,
+                                brand: brand,
+                                category: category,
+                                value: value,
+                                amount: amount,
+                                delivery: (delivery == 0) ? 1 : 0,
+                                pay: pay,
+                                status: status,
+                              ),
+                              item,
+                              client);
+                        }
+                      });
                     },
                     icon: Icon(Icons.delivery_dining)),
                 IconButton(
@@ -281,7 +303,14 @@ class SaleCard extends StatelessWidget {
                     icon: Icon(Icons.add_box)),
                 IconButton(
                     onPressed: () {
-                      SellDao().delete(item, client);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja realmente excluir?",
+                      ).then((value) async {
+                        if (value) {
+                          SellDao().delete(item, client);
+                        }
+                      });
                     },
                     icon: Icon(Icons.delete)),
               ],

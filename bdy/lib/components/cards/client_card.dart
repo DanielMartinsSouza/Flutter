@@ -2,6 +2,7 @@ import 'package:bdy/data/client_dao.dart';
 import 'package:bdy/screens/register/register_client.dart';
 import 'package:flutter/material.dart';
 
+import '../confirmation_dialog.dart';
 import 'box_card.dart';
 import '../content_division.dart';
 
@@ -119,7 +120,14 @@ class ClientCard extends StatelessWidget {
                     icon: Icon(Icons.add_box)),
                 IconButton(
                     onPressed: () {
-                      ClientDao().delete(clientName);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja realmente excluir?",
+                      ).then((value) async {
+                        if (value) {
+                          ClientDao().delete(clientName);
+                        }
+                      });
                     },
                     icon: Icon(Icons.delete)),
               ],

@@ -17,7 +17,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Marca'),
+        title: const Text('Registro de Categoria'),
         actions: [
           IconButton(
               onPressed: () {

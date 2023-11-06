@@ -1,6 +1,7 @@
 import 'package:bdy/data/category_dao.dart';
 import 'package:flutter/material.dart';
 
+import '../confirmation_dialog.dart';
 import 'box_card.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -26,7 +27,14 @@ class CategoryCard extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  CategoryDao().delete(category);
+                  showConfirmationDialog(
+                    context,
+                    title: "Deseja realmente excluir?",
+                  ).then((value) async {
+                    if (value) {
+                      CategoryDao().delete(category);
+                    }
+                  });
                 },
                 icon: Icon(Icons.delete)),
           ],

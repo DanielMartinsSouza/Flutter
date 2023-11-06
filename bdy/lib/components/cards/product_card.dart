@@ -2,6 +2,7 @@ import 'package:bdy/data/product_dao.dart';
 import 'package:bdy/screens/register/register_product.dart';
 import 'package:flutter/material.dart';
 
+import '../confirmation_dialog.dart';
 import 'box_card.dart';
 import '../content_division.dart';
 
@@ -112,7 +113,14 @@ class ProductCard extends StatelessWidget {
                     icon: const Icon(Icons.add_box)),
                 IconButton(
                     onPressed: () {
-                      ProductDao().delete(productName);
+                      showConfirmationDialog(
+                        context,
+                        title: "Deseja realmente excluir?",
+                      ).then((value) async {
+                        if (value) {
+                          ProductDao().delete(productName);
+                        }
+                      });
                     },
                     icon: const Icon(Icons.delete)),
               ],

@@ -1,3 +1,4 @@
+import 'package:bdy/components/confirmation_dialog.dart';
 import 'package:bdy/data/brand_dao.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,14 @@ class BrandCard extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  BrandDao().delete(name);
+                  showConfirmationDialog(
+                    context,
+                    title: "Deseja realmente excluir?",
+                  ).then((value) async {
+                    if (value) {
+                      BrandDao().delete(name);
+                    }
+                  });
                 },
                 icon: Icon(Icons.delete)),
           ],
